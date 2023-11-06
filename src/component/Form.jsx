@@ -82,8 +82,7 @@ const Form = () => {
           required
         />
       </label>
-      <button type="submit">Calculate</button>
-      <h4>Your output is {output === Infinity ? 0 : output}</h4>
+      <h4>Your output is {output === Infinity ? 0 : output} EUR</h4> 
     </form>
   );
 };
