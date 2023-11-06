@@ -19,6 +19,16 @@ const Form = () => {
     setObtainedValue(2.5);
   }, []);
 
+  //update state when changing inputValue
+  useEffect(() => {
+    calculate();
+  }, [inputValue]);
+
+  //update state when changing inputValue
+  useEffect(() => {
+    calculate();
+  }, [obtainedValue]);
+
   //inputfield only accepts numbers and setValue
   const handleChange = (e) => {
     const value = e.target.value;
@@ -27,8 +37,7 @@ const Form = () => {
     setTotalValue(parsedValue ? parseFloat(parsedValue.replace(",", ".")) : 0); //set to 0 if the parsedValue is empty
   };
   //calculate percentage
-  const calculate = (e) => {
-    e.preventDefault();
+  const calculate = () => {
     const totalValueNum = parseFloat(totalValue);
     let calculatedOutput = 0;
     if (!isNaN(totalValueNum) && totalValueNum !== 0) {
@@ -42,8 +51,13 @@ const Form = () => {
     setOutput(calculatedOutput);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    calculate;
+  };
+
   return (
-    <form onSubmit={calculate}>
+    <form onSubmit={handleSubmit}>
       <label>
         Which plan are you interested in?
         <select
