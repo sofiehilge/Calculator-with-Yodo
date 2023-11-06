@@ -19,11 +19,6 @@ const Form = () => {
     setObtainedValue(2.5);
   }, []);
 
-  //update state when changing inputvalue
-  useEffect(() => {
-    setOutput((obtainedValue / totalValue) * 100);
-  }, [obtainedValue, totalValue]);
-
   //inputfield only accepts numbers and setValue
   const handleChange = (e) => {
     const value = e.target.value;
