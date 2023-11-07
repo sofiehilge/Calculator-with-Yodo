@@ -1,17 +1,12 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import Calculator from "./components/input";
+/* import Calculator from "./components/Input";*/
+import Form from "./components/Form";
 
 function App() {
   return (
     <>
-      <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <Calculator />
+      <div className="p-8 w-12 flex text-lg">
+        <Form />
       </div>
     </>
   );
