@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-function RangeSlider() {
-  const [amount, setAmount] = useState(10); // Start beløb
+function RangeSlider(props) {
+  const [amount, setAmount] = useState(50); // Initial beløb
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
+    props.onChangeAmount(e.target.value); // Send det valgte beløb til forældrekomponenten
   };
 
   return (
@@ -13,9 +14,9 @@ function RangeSlider() {
       <input
         type="range"
         id="amount"
-        min={0}
+        min={10}
         max={1000}
-        step={10} // Opdater trinværdien til 10 kr
+        step={5} // Opdater trin op/ned med 10€
         value={amount}
         onChange={handleAmountChange}
       />
