@@ -14,43 +14,38 @@ const Echart = () => {
         type: "cross",
         label: {
           backgroundColor: "#6a7985",
+          formatter: function () {
+            return `Your expected output in EUR`;
+          },
         },
       },
     },
     legend: {
       data: ["Free Plan 2.5%", "Good Plan 4.5%"],
     },
-    toolbox: {
-      feature: {
-        saveAsImage: {},
-      },
-    },
+
     grid: {
       left: "3%",
       right: "4%",
       bottom: "3%",
       containLabel: true,
     },
-    xAxis: [
-      {
-        type: "category",
-        boundaryGap: false,
-        data: [
-          "1 year",
-          "3 years",
-          "6 years",
-          "9 years",
-          "12 years",
-          "15 years",
-          "18 years",
-        ],
+    xAxis: {
+      axisLabel: {
+        formatter: "{value} years",
+        align: "center",
       },
-    ],
-    yAxis: [
-      {
-        type: "value",
+      type: "category",
+      boundaryGap: false,
+      data: ["1", "3", "6", "9", "12", "15", "18"],
+    },
+    yAxis: {
+      axisLabel: {
+        formatter: "{value} Euro",
+        align: "center",
       },
-    ],
+      type: "value",
+    },
     series: [
       {
         name: "Free Plan 2.5%",
@@ -111,7 +106,11 @@ const Echart = () => {
 
   return (
     <>
-      <ReactEcharts option={option} />
+      <ReactEcharts
+        option={option}
+        style={{ height: "80vh", left: 50, top: 50, width: "90vw" }}
+        opts={{ renderer: "svg" }}
+      />
     </>
   );
 };
