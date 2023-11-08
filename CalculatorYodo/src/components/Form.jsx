@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import RangeSlider from "./RangeSlider";
 const Form = () => {
   // options
   const options = [
@@ -57,33 +57,32 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label className="text-blue-500">
-        Which plan are you interested in?
-        <select
-          required
-          value={obtainedValue}
-          onChange={(e) => setObtainedValue(parseFloat(e.target.value))}
-        >
-          {options.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className="text-blue-500">
-        How much would you like to start with?
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleChange}
-          placeholder="Enter number"
-          required
-        />
-      </label>
-      <h1 className="text-blue-500">
+      <div className="pb-4 flex-col text-center">
+        <label className="text-blue-500">
+          Which plan are you interested in?
+          <select
+            className="w-full"
+            required
+            value={obtainedValue}
+            onChange={(e) => setObtainedValue(parseFloat(e.target.value))}
+          >
+            {options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className="pb-4 flex-col text-center">
+        <label className="text-blue-500 mt-8">
+          How much would you like to start with?
+          <RangeSlider />
+        </label>
+      </div>
+      <h2 className="text-blue-500 flex-col text-center">
         Your output is € {output === Infinity ? 0 : output}
-      </h1>
+      </h2>
     </form>
   );
 };
