@@ -72,7 +72,7 @@ const Echart = ({calculatedOutput}) => {
         emphasis: {
           focus: "series",
         },
-        data: calculatedOutput,
+        data: [25, 75, 150, 225, 300, 375, 450],
       },
       {
         name: "Good Plan 4.5%",
