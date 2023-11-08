@@ -53,7 +53,7 @@ const Form = ({handleOutput}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    calculate;
+    calculate();
     handleOutput(output);
   };
 

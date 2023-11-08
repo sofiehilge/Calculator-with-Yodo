@@ -2,7 +2,7 @@ import React from "react";
 import ReactEcharts from "echarts-for-react";
 import * as echarts from "echarts";
 
-const Echart = () => {
+const Echart = ({calculatedOutput}) => {
   const option = {
     color: ["#80FFA5", "#00DDFF", "#37A2FF", "#FF0087", "#FFBF00"],
     title: {
@@ -72,7 +72,7 @@ const Echart = () => {
         emphasis: {
           focus: "series",
         },
-        data: [25, 75, 150, 225, 300, 375, 450],
+        data: calculatedOutput,
       },
       {
         name: "Good Plan 4.5%",
