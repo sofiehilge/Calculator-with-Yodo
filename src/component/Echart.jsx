@@ -74,7 +74,7 @@ const Echart = ({ updatedInputValue }) => {
         emphasis: {
           focus: "series",
         },
-        data: updatedInputValue /* [25, 75, 150, 225, 300, 375, 450] */,
+        data:  [updatedInputValue * 0.025, updatedInputValue * 0.025 * 3, updatedInputValue * 0.025 * 6, updatedInputValue * 0.025 * 9, updatedInputValue * 0.025 * 12, updatedInputValue * 0.025 * 15, updatedInputValue * 0.025 * 18],
       },
       {
         name: "Good Plan 4.5%",
@@ -101,7 +101,7 @@ const Echart = ({ updatedInputValue }) => {
         emphasis: {
           focus: "series",
         },
-        data: [45, 135, 270, 405, 540, 675, 810],
+        data: [updatedInputValue * 0.045, updatedInputValue * 0.045 * 3, updatedInputValue * 0.045 * 6, updatedInputValue * 0.045 * 9, updatedInputValue * 0.045 * 12, updatedInputValue * 0.045 * 15, updatedInputValue * 0.045 * 18],
       },
     ],
   };
