@@ -1,18 +1,20 @@
 import React, {useState} from "react";
 import Form from "./component/form";
 import Echart from "./component/Echart";
+/* import DynEchart from "./component/DynEchart"; */
 
 function App() {
  
-  const [calculatedOutput, setCalculatedOutput] = useState(0);
-const handleOutput = (output) => {
-  setCalculatedOutput(output);
+  const [updatedInputValue, setUpdatedInputValue] = useState(0);
+const handleInputValue = (inputValue) => {
+  setUpdatedInputValue(inputValue);
 }
 
   return (
     <>
-      <Form handleOutput={handleOutput}/>
-      <Echart calculatedOutput={calculatedOutput} />
+      <Form handleInputValue={handleInputValue}/>
+      <Echart updatedInputValue={updatedInputValue} />
+     {/*  <DynEchart/> */}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Form = ({handleOutput}) => {
+const Form = ({handleInputValue}) => {
   // options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
@@ -54,7 +54,7 @@ const Form = ({handleOutput}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     calculate();
-    handleOutput(output);
+    handleInputValue(inputValue);
   };
 
   return (
