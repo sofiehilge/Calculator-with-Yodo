@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Form from "./component/form";
+/* import Form from "./component/form"; */
 import Echart from "./component/Echart";
-import RangeSlider from "./component/RangeSlider";
 import FormHaris from "./component/FormHaris";
 /* import DynEchart from "./component/DynEchart"; */
 
@@ -13,10 +12,10 @@ function App() {
 
   return (
     <>
-      <Form handleInputValue={handleInputValue} />
+    {/*   <Form  /> */}
       <Echart updatedInputValue={updatedInputValue} />
       <div>
-        <FormHaris />
+        <FormHaris handleInputValue={handleInputValue}/>
       </div>
     </>
   );

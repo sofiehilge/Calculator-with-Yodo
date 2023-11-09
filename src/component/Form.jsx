@@ -12,55 +12,9 @@ const Form = ({ handleInputValue }) => {
   const [obtainedValue, setObtainedValue] = useState(100);
   const [totalValue, setTotalValue] = useState(100);
   const [inputValue, setInputValue] = useState(100);
-  //calculate function
-  const calculate = () => {
-    const totalValueNum = parseFloat(totalValue);
-    let calculatedOutput = 0;
-    if (!isNaN(totalValueNum) && totalValueNum !== 0) {
-      if (obtainedValue === 2.5) {
-        calculatedOutput = totalValueNum * 0.025;
-      } else if (obtainedValue === 4.5) {
-        calculatedOutput = totalValueNum * 0.045;
-      }
-    }
+ 
 
-    return isNaN(calculatedOutput) ? 0 : calculatedOutput;
-  };
 
-  const [output, setOutput] = useState(2.5);
-
-  //update state on initial render
-  useEffect(() => {
-    setObtainedValue(2.5);
-  }, []);
-
-  //update state when changing inputValue
-  useEffect(() => {
-    const calculatedOutput = calculate();
-    setOutput(calculatedOutput);
-    handleInputValue(inputValue);
-  }, [inputValue, obtainedValue]);
-
-  //update state when changing obtainedValue
-  useEffect(() => {
-    const calculatedOutput = calculate();
-    setOutput(calculatedOutput);
-  }, [obtainedValue]);
-
-  // Add this useEffect for initial calculation
-  useEffect(() => {
-    const calculatedOutput = calculate();
-    setOutput(calculatedOutput);
-    handleInputValue(inputValue);
-  }, []);
-
-  //inputfield only accepts numbers and setValue
-  const handleChange = (e) => {
-    const value = e.target.value;
-    const parsedValue = value.replace(/[^0-9.,]/g, "");
-    setInputValue(parsedValue);
-    setTotalValue(parsedValue ? parseFloat(parsedValue.replace(",", ".")) : 0); //set to 0 if the parsedValue is empty
-  };
 
   useEffect(() => {
     calculate();
