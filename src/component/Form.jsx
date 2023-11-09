@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Form = () => {
+const Form = ({ handleInputValue }) => {
   // options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
@@ -9,34 +9,10 @@ const Form = () => {
   ];
 
   //handle and update value
-  const [obtainedValue, setObtainedValue] = useState(0);
-  const [totalValue, setTotalValue] = useState(0);
-  const [output, setOutput] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-
-  //update state on initial render
-  useEffect(() => {
-    setObtainedValue(2.5);
-  }, []);
-
-  //update state when changing inputValue
-  useEffect(() => {
-    calculate();
-  }, [inputValue]);
-
-  //update state when changing inputValue
-  useEffect(() => {
-    calculate();
-  }, [obtainedValue]);
-
-  //inputfield only accepts numbers and setValue
-  const handleChange = (e) => {
-    const value = e.target.value;
-    const parsedValue = value.replace(/[^0-9.,]/g, "");
-    setInputValue(parsedValue);
-    setTotalValue(parsedValue ? parseFloat(parsedValue.replace(",", ".")) : 0); //set to 0 if the parsedValue is empty
-  };
-  //calculate percentage
+  const [obtainedValue, setObtainedValue] = useState(100);
+  const [totalValue, setTotalValue] = useState(100);
+  const [inputValue, setInputValue] = useState(100);
+  //calculate function
   const calculate = () => {
     const totalValueNum = parseFloat(totalValue);
     let calculatedOutput = 0;
@@ -48,12 +24,59 @@ const Form = () => {
       }
     }
 
-    setOutput(calculatedOutput);
+    return isNaN(calculatedOutput) ? 0 : calculatedOutput;
   };
+
+  const [output, setOutput] = useState(2.5);
+
+  //update state on initial render
+  useEffect(() => {
+    setObtainedValue(2.5);
+  }, []);
+
+  //update state when changing inputValue
+  useEffect(() => {
+    const calculatedOutput = calculate();
+    setOutput(calculatedOutput);
+    handleInputValue(inputValue);
+  }, [inputValue, obtainedValue]);
+
+  //update state when changing obtainedValue
+  useEffect(() => {
+    const calculatedOutput = calculate();
+    setOutput(calculatedOutput);
+  }, [obtainedValue]);
+
+  // Add this useEffect for initial calculation
+  useEffect(() => {
+    const calculatedOutput = calculate();
+    setOutput(calculatedOutput);
+    handleInputValue(inputValue);
+  }, []);
+
+  //inputfield only accepts numbers and setValue
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const parsedValue = value.replace(/[^0-9.,]/g, "");
+    setInputValue(parsedValue);
+    setTotalValue(parsedValue ? parseFloat(parsedValue.replace(",", ".")) : 0); //set to 0 if the parsedValue is empty
+  };
+
+  useEffect(() => {
+    calculate();
+    handleInputValue(inputValue);
+  }, [inputValue, obtainedValue]);
+
+  // Add this useEffect for initial calculation
+  useEffect(() => {
+    calculate();
+  }, []); // empty dependency array
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    calculate;
+    calculate();
+    console.log("input value:", inputValue);
+    handleInputValue(inputValue);
   };
 
   return (
@@ -82,7 +105,7 @@ const Form = () => {
           required
         />
       </label>
-      <h4>Your output is {output === Infinity ? 0 : output} EUR</h4> 
+      <h4>Your output is {output} EUR</h4>
     </form>
   );
 };
