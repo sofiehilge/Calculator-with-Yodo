@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RangeSlider from "./RangeSlider";
 
-const Form = () => {
+const FormHaris = () => {
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
     { label: "Good Plan (4.5%)", value: 4.5 },
@@ -46,18 +46,18 @@ const Form = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex items-center justify-center h-screen">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md"
       >
-        <label className="block text-blue-500 mb-4">
+        <label className="block mb-4 text-blue-500">
           Which plan are you interested in?
           <select
             required
             value={obtainedValue}
             onChange={(e) => setObtainedValue(parseFloat(e.target.value))}
-            className="block w-full bg-gray-200 border border-gray-400 p-2 rounded"
+            className="block w-full p-2 bg-gray-200 border border-gray-400 rounded"
           >
             {options.map((option, index) => (
               <option key={index} value={option.value}>
@@ -66,22 +66,16 @@ const Form = () => {
             ))}
           </select>
         </label>
-        <label className="block text-blue-500 mb-4">
+        <label className="block mb-4 text-blue-500">
           How much would you like to start with?
           <RangeSlider onChangeAmount={handleAmountChange} />
         </label>
-        <h1 className="text-blue-500 mb-4">
+        <h1 className="mb-4 text-blue-500">
           Your output is € {output === Infinity ? 0 : output}
         </h1>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Calculate
-        </button>
       </form>
     </div>
   );
 };
 
-export default Form;
+export default FormHaris;
