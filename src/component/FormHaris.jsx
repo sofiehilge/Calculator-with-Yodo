@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import RangeSlider from "./RangeSlider";
 
 const FormHaris = ({ handleInputValue }) => {
-  //options
+  // Options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
     { label: "Good Plan (4.5%)", value: 4.5 },
   ];
-  //handle and update value
+
+  // Handle and update values
   const [obtainedValue, setObtainedValue] = useState(2.5);
   const [totalValue, setTotalValue] = useState(1000);
   const [output, setOutput] = useState(0);
 
-  //calculate function
+  // Calculate function
   const calculate = () => {
     const totalValueNum = parseFloat(totalValue);
     let calculatedOutput = 0;
@@ -27,14 +28,14 @@ const FormHaris = ({ handleInputValue }) => {
     return isNaN(calculatedOutput) ? 0 : calculatedOutput;
   };
 
-  //update totalValue and ontainedValue after calc
+  // Update totalValue and obtainedValue after calculation
   useEffect(() => {
     const calculatedOutput = calculate();
     setOutput(calculatedOutput);
     handleInputValue(totalValue);
   }, [totalValue, obtainedValue]);
 
-  //update state when changing obtainedValue
+  // Update state when changing obtainedValue
   useEffect(() => {
     const calculatedOutput = calculate();
     setOutput(calculatedOutput);
@@ -48,23 +49,22 @@ const FormHaris = ({ handleInputValue }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     calculate();
-    console.log("input value:", inputValue);
-    handleInputValue(inputValue);
+    handleInputValue(totalValue);
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="items-center justify-center w-full p-4">
       <form
         onSubmit={handleSubmit}
-        className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md"
+        className="flex w-full gap-4 p-8 text-center"
       >
-        <label className="block mb-4 text-blue-500">
+        <label className="flex-col">
           Which plan are you interested in?
           <select
             required
             value={obtainedValue}
             onChange={(e) => setObtainedValue(parseFloat(e.target.value))}
-            className="block w-full p-2 bg-gray-200 border border-gray-400 rounded"
+            className="block w-full bg-white border border-black rounded"
           >
             {options.map((option, index) => (
               <option key={index} value={option.value}>
@@ -73,11 +73,11 @@ const FormHaris = ({ handleInputValue }) => {
             ))}
           </select>
         </label>
-        <label className="block mb-4 text-blue-500">
+        <label className="flex-col">
           How much would you like to start with?
           <RangeSlider onChangeAmount={handleAmountChange} />
         </label>
-        <h1 className="mb-4 text-blue-500">Your output after one year € {output}</h1>
+        <h1 className="flex ">Your output after one year €{output}</h1>
       </form>
     </div>
   );

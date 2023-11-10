@@ -1,10 +1,9 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 import * as echarts from "echarts";
+import OutputComp from "./OutputComp";
 
 const Echart = ({ updatedInputValue }) => {
-  /* Generate yearsArray for the xAxis */
-
   const generateYearsArray = () => {
     const currentYear = new Date().getFullYear();
     const numberofYears = 20;
@@ -15,27 +14,22 @@ const Echart = ({ updatedInputValue }) => {
     return yearsArray.map(String);
   };
 
-  console.log("updatedInputValue: ", updatedInputValue);
   const option = {
-    color:['#3183CC','#194266'],
-    title: {
-      text: "Output expected",
-    },
+    color: ["#3183CC", "#194266"],
+    title: {},
     textStyle: {
       fontFamily: "Montserrat, sans-serif",
-      color: "#121316",
-      fontWeight: "medium",
-      lineHeight: "1.25",
+      color: "#000",
     },
     tooltip: {
       trigger: "axis",
       axisPointer: {
-        // type: "cross",
         label: {
-          backgroundColor: "#abb8c3",
+          backgroundColor: "#000",
           fontFamily: "Inter, sans-serif",
-          color: "#606778",
+          color: "#000",
           fontWeight: "medium",
+          align: "center",
           lineHeight: "1.25",
           formatter: function () {
             return `Your expected output in EUR`;
@@ -47,16 +41,16 @@ const Echart = ({ updatedInputValue }) => {
       data: ["Good Plan 4.5%", "Free Plan 2.5%"],
       textStyle: {
         fontFamily: "Inter, sans-serif",
-        color: "#606778",
+        color: "#000",
         fontWeight: "medium",
         lineHeight: "1.25",
-      }
+      },
     },
 
     grid: {
-      left: "3%",
-      right: "4%",
-      bottom: "3%",
+      left: "-5%",
+      right: "0%",
+      bottom: "30%",
       containLabel: true,
     },
     xAxis: {
@@ -64,7 +58,7 @@ const Echart = ({ updatedInputValue }) => {
         formatter: "{value}",
         align: "center",
         fontFamily: "Inter, sans-serif",
-        color: "#606778",
+        color: "#000",
         fontWeight: "medium",
         lineHeight: "1.25",
       },
@@ -74,10 +68,10 @@ const Echart = ({ updatedInputValue }) => {
     },
     yAxis: {
       axisLabel: {
-        formatter: "{value} Euro",
+        formatter: "€{value}",
         align: "center",
         fontFamily: "Inter, sans-serif",
-        color: "#606778",
+        color: "#000",
         fontWeight: "medium",
         lineHeight: "1.25",
       },
@@ -116,7 +110,6 @@ const Echart = ({ updatedInputValue }) => {
         data: generateYearsArray().map(
           (year, index) => updatedInputValue * 0.045 * (index + 1)
         ),
-        /*  [updatedInputValue * 0.045, updatedInputValue * 0.045 * 3, updatedInputValue * 0.045 * 6, updatedInputValue * 0.045 * 9, updatedInputValue * 0.045 * 12, updatedInputValue * 0.045 * 15, updatedInputValue * 0.045 * 18], */
       },
       {
         name: "Free Plan 2.5%",
@@ -129,7 +122,6 @@ const Echart = ({ updatedInputValue }) => {
         showSymbol: false,
         areaStyle: {
           opacity: 0.8,
-          //the colors are from the wordpress page
           color: new echarts.graphic.LinearGradient(140, 0, 140, 1, [
             {
               offset: 0.3202,
@@ -151,20 +143,19 @@ const Echart = ({ updatedInputValue }) => {
         data: generateYearsArray().map(
           (year, index) => updatedInputValue * 0.025 * (index + 1)
         ),
-        /*  [updatedInputValue * 0.025, updatedInputValue * 0.025 * 3, updatedInputValue * 0.025 * 6, updatedInputValue * 0.025 * 9, updatedInputValue * 0.025 * 12, updatedInputValue * 0.025 * 15, updatedInputValue * 0.025 * 18], */
       },
     ],
   };
 
   return (
-    <>
+    <div className="flex-col p-3 m-3 text-black border rounded bg-gray-100/50 solid">
       <ReactEcharts
         option={option}
-        style={{ height: "50vh", left: 50, top: 50, width: "50vw" }}
+        style={{ height: "50vh", width: "80vw" }}
         opts={{ renderer: "svg" }}
       />
-      
-    </>
+      <OutputComp updatedInputValue={updatedInputValue} />
+    </div>
   );
 };
 

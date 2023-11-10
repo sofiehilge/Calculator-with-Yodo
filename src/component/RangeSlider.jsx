@@ -10,7 +10,7 @@ function RangeSlider(props) {
 
   return (
     <div>
-      <label htmlFor="amount">Select amount: {amount} €</label>
+      <label htmlFor="amount">Select amount: €{amount}</label>
       <input
         type="range"
         id="amount"

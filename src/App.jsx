@@ -5,7 +5,6 @@ import FormHaris from "./component/FormHaris";
 import OutputComp from "./component/OutputComp";
 /* import DynEchart from "./component/DynEchart"; */
 
-
 function App() {
   const [updatedInputValue, setUpdatedInputValue] = useState(0);
   const handleInputValue = (inputValue) => {
@@ -13,11 +12,12 @@ function App() {
   };
 
   return (
-    <div className="flex">
+    <div>
+      <h1 className="flex justify-center p-4 text-[30px] font-bold text-white">
+        withyodo.com
+      </h1>
       <FormHaris handleInputValue={handleInputValue} />
-      <OutputComp updatedInputValue={updatedInputValue}/>
       <Echart updatedInputValue={updatedInputValue} />
-     
     </div>
   );
 }

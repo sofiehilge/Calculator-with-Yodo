@@ -12,9 +12,6 @@ const Form = ({ handleInputValue }) => {
   const [obtainedValue, setObtainedValue] = useState(100);
   const [totalValue, setTotalValue] = useState(100);
   const [inputValue, setInputValue] = useState(100);
- 
-
-
 
   useEffect(() => {
     calculate();
@@ -59,7 +56,7 @@ const Form = ({ handleInputValue }) => {
           required
         />
       </label>
-      <h4>Your output is {output} EUR</h4>
+      <h2>Your output is {output} EUR</h2>
     </form>
   );
 };
