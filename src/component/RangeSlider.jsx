@@ -14,9 +14,9 @@ function RangeSlider(props) {
       <input
         type="range"
         id="amount"
-        min={1000}
-        max={100000}
-        step={500} // Opdater trin op/ned med 10€
+        min={1000} //1000€
+        max={100000} //100.000€
+        step={500} // Opdater trin op/ned med 500€
         value={amount}
         onChange={handleAmountChange}
       />
