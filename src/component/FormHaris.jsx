@@ -1,34 +1,21 @@
 import React, { useState, useEffect } from "react";
 import RangeSlider from "./RangeSlider";
 
-const FormHaris = () => {
+const FormHaris = ({ handleInputValue }) => {
+  //options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
     { label: "Good Plan (4.5%)", value: 4.5 },
   ];
-
+  //handle and update value
   const [obtainedValue, setObtainedValue] = useState(2.5);
-  const [totalValue, setTotalValue] = useState(0);
+  const [totalValue, setTotalValue] = useState(1000);
   const [output, setOutput] = useState(0);
 
-  useEffect(() => {
-    calculate();
-  }, [totalValue, obtainedValue]);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    const parsedValue = value.replace(/[^0-9.,]/g, "");
-    setTotalValue(parsedValue ? parseFloat(parsedValue.replace(",", ".")) : 0);
-  };
-
-  const handleAmountChange = (amount) => {
-    setTotalValue(amount);
-  };
-
+  //calculate function
   const calculate = () => {
     const totalValueNum = parseFloat(totalValue);
     let calculatedOutput = 0;
-
     if (!isNaN(totalValueNum) && totalValueNum !== 0) {
       if (obtainedValue === 2.5) {
         calculatedOutput = totalValueNum * 0.025;
@@ -37,12 +24,32 @@ const FormHaris = () => {
       }
     }
 
+    return isNaN(calculatedOutput) ? 0 : calculatedOutput;
+  };
+
+  //update totalValue and ontainedValue after calc
+  useEffect(() => {
+    const calculatedOutput = calculate();
     setOutput(calculatedOutput);
+    handleInputValue(totalValue);
+  }, [totalValue, obtainedValue]);
+
+  //update state when changing obtainedValue
+  useEffect(() => {
+    const calculatedOutput = calculate();
+    setOutput(calculatedOutput);
+    handleInputValue(totalValue);
+  }, [totalValue, obtainedValue]);
+
+  const handleAmountChange = (inputValue) => {
+    setTotalValue(inputValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     calculate();
+    console.log("input value:", inputValue);
+    handleInputValue(inputValue);
   };
 
   return (
@@ -70,9 +77,7 @@ const FormHaris = () => {
           How much would you like to start with?
           <RangeSlider onChangeAmount={handleAmountChange} />
         </label>
-        <h1 className="mb-4 text-blue-500">
-          Your output is € {output === Infinity ? 0 : output}
-        </h1>
+        <h1 className="mb-4 text-blue-500">Your output after one year € {output}</h1>
       </form>
     </div>
   );

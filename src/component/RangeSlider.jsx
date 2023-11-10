@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function RangeSlider(props) {
-  const [amount, setAmount] = useState(50); // Initial beløb
+  const [amount, setAmount] = useState(1000); // Initial beløb
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
