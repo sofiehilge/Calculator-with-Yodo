@@ -3,28 +3,40 @@ import ReactEcharts from "echarts-for-react";
 import * as echarts from "echarts";
 
 const Echart = ({ updatedInputValue }) => {
-
   /* Generate yearsArray for the xAxis */
 
   const generateYearsArray = () => {
     const currentYear = new Date().getFullYear();
     const numberofYears = 20;
-    const yearsArray = Array.from({length: numberofYears}, (_, index) => currentYear + index);
+    const yearsArray = Array.from(
+      { length: numberofYears },
+      (_, index) => currentYear + index
+    );
     return yearsArray.map(String);
-  }
+  };
 
-  console.log("updatedInputValue: ", updatedInputValue)
+  console.log("updatedInputValue: ", updatedInputValue);
   const option = {
-    color: ["#80FFA5", "#00DDFF", "#37A2FF", "#FF0087", "#FFBF00"],
+    color:['#3183CC','#194266'],
     title: {
       text: "Output expected",
+    },
+    textStyle: {
+      fontFamily: "Montserrat, sans-serif",
+      color: "#121316",
+      fontWeight: "medium",
+      lineHeight: "1.25",
     },
     tooltip: {
       trigger: "axis",
       axisPointer: {
-        type: "cross",
+        // type: "cross",
         label: {
-          backgroundColor: "#6a7985",
+          backgroundColor: "#abb8c3",
+          fontFamily: "Inter, sans-serif",
+          color: "#606778",
+          fontWeight: "medium",
+          lineHeight: "1.25",
           formatter: function () {
             return `Your expected output in EUR`;
           },
@@ -32,7 +44,13 @@ const Echart = ({ updatedInputValue }) => {
       },
     },
     legend: {
-      data: ["Free Plan 2.5%", "Good Plan 4.5%"],
+      data: ["Good Plan 4.5%", "Free Plan 2.5%"],
+      textStyle: {
+        fontFamily: "Inter, sans-serif",
+        color: "#606778",
+        fontWeight: "medium",
+        lineHeight: "1.25",
+      }
     },
 
     grid: {
@@ -45,6 +63,10 @@ const Echart = ({ updatedInputValue }) => {
       axisLabel: {
         formatter: "{value}",
         align: "center",
+        fontFamily: "Inter, sans-serif",
+        color: "#606778",
+        fontWeight: "medium",
+        lineHeight: "1.25",
       },
       type: "category",
       boundaryGap: false,
@@ -54,38 +76,14 @@ const Echart = ({ updatedInputValue }) => {
       axisLabel: {
         formatter: "{value} Euro",
         align: "center",
+        fontFamily: "Inter, sans-serif",
+        color: "#606778",
+        fontWeight: "medium",
+        lineHeight: "1.25",
       },
       type: "value",
     },
     series: [
-      {
-        name: "Free Plan 2.5%",
-        type: "line",
-        stack: "Total",
-        smooth: true,
-        lineStyle: {
-          width: 0,
-        },
-        showSymbol: false,
-        areaStyle: {
-          opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: "rgb(128, 255, 165)",
-            },
-            {
-              offset: 1,
-              color: "rgb(1, 191, 236)",
-            },
-          ]),
-        },
-        emphasis: {
-          focus: "series",
-        },
-        data: generateYearsArray().map((year, index) => updatedInputValue * 0.025 * (index +1))
-        /*  [updatedInputValue * 0.025, updatedInputValue * 0.025 * 3, updatedInputValue * 0.025 * 6, updatedInputValue * 0.025 * 9, updatedInputValue * 0.025 * 12, updatedInputValue * 0.025 * 15, updatedInputValue * 0.025 * 18], */
-      },
       {
         name: "Good Plan 4.5%",
         type: "line",
@@ -97,22 +95,63 @@ const Echart = ({ updatedInputValue }) => {
         showSymbol: false,
         areaStyle: {
           opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          color: new echarts.graphic.LinearGradient(140, 0, 140, 1, [
             {
-              offset: 0,
-              color: "rgb(0, 221, 255)",
+              offset: 0.3202,
+              color: "#194266",
             },
             {
-              offset: 1,
-              color: "rgb(77, 119, 255)",
+              offset: 0.8349,
+              color: "#3c5975",
+            },
+            {
+              offset: 0.9627,
+              color: "#516579",
             },
           ]),
         },
         emphasis: {
           focus: "series",
         },
-        data:generateYearsArray().map((year, index) => updatedInputValue * 0.045 * (index +1))
+        data: generateYearsArray().map(
+          (year, index) => updatedInputValue * 0.045 * (index + 1)
+        ),
         /*  [updatedInputValue * 0.045, updatedInputValue * 0.045 * 3, updatedInputValue * 0.045 * 6, updatedInputValue * 0.045 * 9, updatedInputValue * 0.045 * 12, updatedInputValue * 0.045 * 15, updatedInputValue * 0.045 * 18], */
+      },
+      {
+        name: "Free Plan 2.5%",
+        type: "line",
+        stack: "Total",
+        smooth: true,
+        lineStyle: {
+          width: 0,
+        },
+        showSymbol: false,
+        areaStyle: {
+          opacity: 0.8,
+          //the colors are from the wordpress page
+          color: new echarts.graphic.LinearGradient(140, 0, 140, 1, [
+            {
+              offset: 0.3202,
+              color: "#3183CC",
+            },
+            {
+              offset: 0.8349,
+              color: "#77B2E9",
+            },
+            {
+              offset: 0.9627,
+              color: "#A2CAF2",
+            },
+          ]),
+        },
+        emphasis: {
+          focus: "series",
+        },
+        data: generateYearsArray().map(
+          (year, index) => updatedInputValue * 0.025 * (index + 1)
+        ),
+        /*  [updatedInputValue * 0.025, updatedInputValue * 0.025 * 3, updatedInputValue * 0.025 * 6, updatedInputValue * 0.025 * 9, updatedInputValue * 0.025 * 12, updatedInputValue * 0.025 * 15, updatedInputValue * 0.025 * 18], */
       },
     ],
   };
@@ -121,9 +160,10 @@ const Echart = ({ updatedInputValue }) => {
     <>
       <ReactEcharts
         option={option}
-        style={{ height: "80vh", left: 50, top: 50, width: "90vw" }}
+        style={{ height: "50vh", left: 50, top: 50, width: "50vw" }}
         opts={{ renderer: "svg" }}
       />
+      
     </>
   );
 };
