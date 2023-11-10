@@ -163,6 +163,7 @@ const Echart = ({ updatedInputValue }) => {
         style={{ height: "50vh", left: 50, top: 50, width: "50vw" }}
         opts={{ renderer: "svg" }}
       />
+      
     </>
   );
 };
