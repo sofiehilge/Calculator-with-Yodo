@@ -9,8 +9,10 @@ function RangeSlider(props) {
   };
 
   return (
-    <div>
-      <label htmlFor="amount">Select amount: €{amount}</label>
+    <div className="my-5">
+      <label htmlFor="amount" className="block text-sm font-medium">
+        Select amount: €{amount}
+      </label>
       <input
         type="range"
         id="amount"
@@ -19,6 +21,7 @@ function RangeSlider(props) {
         step={500} // Opdater trin op/ned med 500€
         value={amount}
         onChange={handleAmountChange}
+        className="w-full h-1 bg-white rounded appearance-none focus:outline-none focus:shadow-outline"
       />
     </div>
   );

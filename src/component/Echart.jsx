@@ -49,8 +49,8 @@ const Echart = ({ updatedInputValue }) => {
 
     grid: {
       left: "-5%",
-      right: "0%",
-      bottom: "30%",
+      right: "5%",
+      bottom: "0%",
       containLabel: true,
     },
     xAxis: {
@@ -148,13 +148,12 @@ const Echart = ({ updatedInputValue }) => {
   };
 
   return (
-    <div className="flex-col p-3 m-3 text-black border rounded bg-gray-100/50 solid">
+    <div className="flex-col p-3 m-3 text-black">
       <ReactEcharts
         option={option}
-        style={{ height: "50vh", width: "80vw" }}
+        style={{ height: "40vh", width: "100%" }}
         opts={{ renderer: "svg" }}
       />
-      <OutputComp updatedInputValue={updatedInputValue} />
     </div>
   );
 };

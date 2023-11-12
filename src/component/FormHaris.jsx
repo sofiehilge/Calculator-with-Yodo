@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RangeSlider from "./RangeSlider";
 
-const FormHaris = ({ handleInputValue }) => {
+const FormHaris = ({ handleInputValue, handlePlanChange }) => {
   // Options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
@@ -44,6 +44,7 @@ const FormHaris = ({ handleInputValue }) => {
 
   const handleAmountChange = (inputValue) => {
     setTotalValue(inputValue);
+    handlePlanChange(obtainedValue); // Opdater denne linje for at sende den rigtige værdi
   };
 
   const handleSubmit = (e) => {
@@ -73,11 +74,10 @@ const FormHaris = ({ handleInputValue }) => {
             ))}
           </select>
         </label>
-        <label className="flex-col">
-          How much would you like to start with?
+        <div>
           <RangeSlider onChangeAmount={handleAmountChange} />
-        </label>
-        <h1 className="flex ">Your output after one year €{output}</h1>
+        </div>
+        <h2 className="flex">Your output after one year €{output}</h2>
       </form>
     </div>
   );
