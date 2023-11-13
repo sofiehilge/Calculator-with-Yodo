@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function RangeSlider(props) {
+function RangeSlider({ value, onChangeAmount }) {
   const [amount, setAmount] = useState(1000); // Initial beløb
+  const [formattedAmount, setFormattedAmount] = useState("");
+
+  const formatAmount = (value) => {
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "EUR",
+    });
+    return formatter.format(value);
+  };
+  useEffect(() => {
+    setFormattedAmount(formatAmount(amount));
+  }, [amount]);
 
   const handleAmountChange = (e) => {
-    setAmount(e.target.value);
-    props.onChangeAmount(e.target.value); // Send det valgte beløb til forældrekomponenten
+    const newAmount = parseInt(e.target.value, 10);
+    setAmount(newAmount);
+    onChangeAmount(newAmount); // Send det valgte beløb til forældrekomponenten
   };
 
   return (
@@ -22,6 +35,7 @@ function RangeSlider(props) {
         value={amount}
         onChange={handleAmountChange}
         className="w-full h-1 bg-white rounded appearance-none focus:outline-none focus:shadow-outline"
+        
       />
     </div>
   );
