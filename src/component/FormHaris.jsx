@@ -5,7 +5,7 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
   // Options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
-    { label: "Good Plan (4.5%)", value: 4.5 },
+    { label: "Good Plan (5%)", value: 5 },
   ];
 
   // Handle and update values
@@ -17,12 +17,9 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
   const calculate = () => {
     const totalValueNum = parseFloat(totalValue);
     let calculatedOutput = 0;
+
     if (!isNaN(totalValueNum) && totalValueNum !== 0) {
-      if (obtainedValue === 2.5) {
-        calculatedOutput = totalValueNum * 0.025;
-      } else if (obtainedValue === 4.5) {
-        calculatedOutput = totalValueNum * 0.045;
-      }
+      calculatedOutput = totalValueNum * (obtainedValue / 100);
     }
 
     return isNaN(calculatedOutput) ? 0 : calculatedOutput;
@@ -44,7 +41,7 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
 
   const handleAmountChange = (inputValue) => {
     setTotalValue(inputValue);
-    handlePlanChange(obtainedValue); // Opdater denne linje for at sende den rigtige værdi
+    handlePlanChange(obtainedValue);
   };
 
   const handleSubmit = (e) => {
@@ -59,21 +56,19 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
         onSubmit={handleSubmit}
         className="flex w-full gap-4 p-8 text-center"
       >
-        <label className="flex-col">
-          Which plan are you interested in?
-          <select
-            required
-            value={obtainedValue}
-            onChange={(e) => setObtainedValue(parseFloat(e.target.value))}
-            className="block w-full bg-white border border-black rounded"
+        {options.map((option, index) => (
+          <button
+            key={index}
+            className={`p-3 w-full rounded-full ${
+              obtainedValue === option.value
+                ? "bg-black text-white border-orange-400"
+                : "bg-white text-black border-gray-300 hover:bg-gray-200"
+            }`}
+            onClick={() => setObtainedValue(option.value)}
           >
-            {options.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
+            {option.label}
+          </button>
+        ))}
         <div>
           <RangeSlider onChangeAmount={handleAmountChange} />
         </div>
