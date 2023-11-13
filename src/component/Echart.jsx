@@ -15,10 +15,15 @@ const Echart = ({ updatedInputValue }) => {
 
   const option = {
     color: ["#3183CC", "#194266"],
-    title: {},
+    title: {
+      show: true,
+      text: "Projected\nBalance",
+    },
     textStyle: {
       fontFamily: "Montserrat, sans-serif",
       color: "#000",
+      /* overflow: "break",
+      width: 50 */
     },
     tooltip: {
       trigger: "axis",
@@ -37,48 +42,76 @@ const Echart = ({ updatedInputValue }) => {
       },
     },
     legend: {
+
       data: ["Good Plan 5%", "Free Plan 2.5%"], // Opdater navnet for at afspejle ændringen
+
       textStyle: {
         fontFamily: "Inter, sans-serif",
         color: "#000",
         fontWeight: "medium",
-        lineHeight: "1.25",
+
+        /*   left: "-5%", */
+        textAlign: "center",
+        align: "center",
+      },
+      selectedMode: false, //disable legend item click
+      icon: "circle", //set the legend to be a rectangle
+      itemWidth: 10,
+      itemHeight: 10,
+
+      borderColor: "#606778",
+      borderWidth: 1,
+      borderRadius: 12,
+      right: 10, // Adjust this value to position the legend
+      top: 0, // Adjust this value to vertically position the legend
+      orient: "vertical",
+      itemStyle: {
+        width: 3, // Adjust this value for the width of legend items
+        height: 3, // Adjust this value for the height of legend items
       },
     },
 
     grid: {
       left: "-5%",
-      right: "5%",
-      bottom: "0%",
+      right: "0%",
+      bottom: "10%",
       containLabel: true,
     },
     xAxis: {
       axisLabel: {
         formatter: "{value}",
-        align: "center",
+        align: "left",
         fontFamily: "Inter, sans-serif",
         color: "#000",
         fontWeight: "medium",
-        lineHeight: "1.25",
+        lineHeight: "10",
       },
+      axisTick: {
+        show: false,
+      },
+
       type: "category",
       boundaryGap: false,
       data: generateYearsArray(),
     },
     yAxis: {
-      axisLabel: {
-        formatter: "€{value}",
-        align: "center",
-        fontFamily: "Inter, sans-serif",
-        color: "#000",
-        fontWeight: "medium",
-        lineHeight: "1.25",
-      },
+      // axisLabel: {
+      //   formatter: "€{value}",
+      //   align: "center",
+      //   fontFamily: "Inter, sans-serif",
+      //   color: "#000",
+      //   fontWeight: "medium",
+      //   lineHeight: "1.25",
+      // },
       type: "value",
+      show: false,
+      splitLine: {
+        show: false, // Set to false to hide the y-axis line
+      },
     },
     series: [
       {
-        name: "Good Plan 5%", // Opdater navnet for at afspejle ændringen
+        name: "Good Plan 5%",
         type: "line",
         stack: "Total",
         smooth: true,
@@ -107,7 +140,8 @@ const Echart = ({ updatedInputValue }) => {
           focus: "series",
         },
         data: generateYearsArray().map(
-          (year, index) => updatedInputValue * 0.05 * (index + 1) // Opdater procentdelen til 5%
+          (year, index) => updatedInputValue * 0.05 * (index + 1)
+
         ),
       },
       {
@@ -147,10 +181,10 @@ const Echart = ({ updatedInputValue }) => {
   };
 
   return (
-    <div className="flex-col p-3 m-3 text-black">
+    <div className="flex-col text-black ">
       <ReactEcharts
         option={option}
-        style={{ height: "40vh", width: "100%" }}
+        style={{ height: "30vh", width: "100%" }}
         opts={{ renderer: "svg" }}
       />
     </div>

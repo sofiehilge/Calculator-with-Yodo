@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import RangeSlider from "./RangeSlider";
 
-const FormHaris = ({ handleInputValue, handlePlanChange }) => {
+const FormHaris = ({
+  handleInputValue,
+  handlePlanChange,
+  totalValue,
+  handleAmountChange,
+}) => {
   // Options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
@@ -10,7 +14,6 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
 
   // Handle and update values
   const [obtainedValue, setObtainedValue] = useState(2.5);
-  const [totalValue, setTotalValue] = useState(1000);
   const [output, setOutput] = useState(0);
 
   // Calculate function
@@ -19,7 +22,12 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
     let calculatedOutput = 0;
 
     if (!isNaN(totalValueNum) && totalValueNum !== 0) {
-      calculatedOutput = totalValueNum * (obtainedValue / 100);
+      if (obtainedValue === 2.5) {
+        calculatedOutput = totalValueNum * 0.025;
+      } else if (obtainedValue === 5) {
+        calculatedOutput = totalValueNum * 0.05;
+      }
+
     }
 
     return isNaN(calculatedOutput) ? 0 : calculatedOutput;
@@ -30,7 +38,8 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
     const calculatedOutput = calculate();
     setOutput(calculatedOutput);
     handleInputValue(totalValue);
-  }, [totalValue, obtainedValue]);
+    handlePlanChange(obtainedValue);
+  }, [totalValue, obtainedValue, handleInputValue, handlePlanChange]);
 
   // Update state when changing obtainedValue
   useEffect(() => {
@@ -38,6 +47,7 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
     setOutput(calculatedOutput);
     handleInputValue(totalValue);
   }, [totalValue, obtainedValue]);
+
 
   const handleAmountChange = (inputValue) => {
     setTotalValue(inputValue);
@@ -66,12 +76,20 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
             }`}
             onClick={() => setObtainedValue(option.value)}
           >
+            {options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
             {option.label}
           </button>
         ))}
         <div>
           <RangeSlider onChangeAmount={handleAmountChange} />
         </div>
+
         <h2 className="flex">Your output after one year €{output}</h2>
       </form>
     </div>

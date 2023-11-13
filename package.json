@@ -10,13 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autoprefixer": "^9.8.6",
     "chart.js": "^4.4.0",
     "d3": "^7.8.5",
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
+    "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
