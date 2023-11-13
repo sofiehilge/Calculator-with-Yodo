@@ -18,7 +18,7 @@ const Echart = ({ updatedInputValue }) => {
     color: ["#3183CC", "#194266"],
     title: {
       show: true,
-    text: "Projected\nBalance",
+      text: "Projected\nBalance",
     },
     textStyle: {
       fontFamily: "Montserrat, sans-serif",
@@ -48,16 +48,16 @@ const Echart = ({ updatedInputValue }) => {
         fontFamily: "Inter, sans-serif",
         color: "#000",
         fontWeight: "medium",
-  
+
         /*   left: "-5%", */
         textAlign: "center",
         align: "center",
       },
       selectedMode: false, //disable legend item click
       icon: "circle", //set the legend to be a rectangle
-      itemWidth: 2,
-      itemHeight: 2,
-     
+      itemWidth: 10,
+      itemHeight: 10,
+
       borderColor: "#606778",
       borderWidth: 1,
       borderRadius: 12,
