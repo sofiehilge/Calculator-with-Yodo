@@ -71,8 +71,8 @@ const FormHaris = ({
             key={index}
             className={`p-3 w-full rounded-full ${
               obtainedValue === option.value
-                ? "bg-black text-white border-orange-400"
-                : "bg-white text-black border-gray-300 hover:bg-gray-200"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
             onClick={() => setObtainedValue(option.value)}
           >
@@ -89,8 +89,6 @@ const FormHaris = ({
         <div>
           <RangeSlider onChangeAmount={handleAmountChange} />
         </div>
-
-        <h2 className="flex">Your output after one year €{output}</h2>
       </form>
     </div>
   );

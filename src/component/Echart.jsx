@@ -181,7 +181,9 @@ const Echart = ({ updatedInputValue }) => {
   };
 
   return (
-    <div className="flex-col text-black ">
+
+    <div className="flex-col p-3 text-black">
+
       <ReactEcharts
         option={option}
         style={{ height: "30vh", width: "100%" }}

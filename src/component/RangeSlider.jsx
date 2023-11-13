@@ -22,13 +22,9 @@ function RangeSlider({ value, onChangeAmount }) {
   };
 
   return (
-    <div className="my-5">
-      <label
-        htmlFor="amount"
-        className="block text-sm font-medium text-gray-500"
-      >
-        Increase your balance by{" "}
-        <span className="text-black">{formattedAmount} €</span>
+    <div className="">
+      <label htmlFor="amount" className="flex mt-4 text-lg ">
+        Select amount: {amount}€
       </label>
       <input
         type="range"
