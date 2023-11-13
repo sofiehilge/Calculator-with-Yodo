@@ -1,7 +1,6 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 import * as echarts from "echarts";
-import OutputComp from "./OutputComp";
 
 const Echart = ({ updatedInputValue }) => {
   const generateYearsArray = () => {
@@ -38,7 +37,7 @@ const Echart = ({ updatedInputValue }) => {
       },
     },
     legend: {
-      data: ["Good Plan 4.5%", "Free Plan 2.5%"],
+      data: ["Good Plan 5%", "Free Plan 2.5%"], // Opdater navnet for at afspejle ændringen
       textStyle: {
         fontFamily: "Inter, sans-serif",
         color: "#000",
@@ -79,7 +78,7 @@ const Echart = ({ updatedInputValue }) => {
     },
     series: [
       {
-        name: "Good Plan 4.5%",
+        name: "Good Plan 5%", // Opdater navnet for at afspejle ændringen
         type: "line",
         stack: "Total",
         smooth: true,
@@ -108,7 +107,7 @@ const Echart = ({ updatedInputValue }) => {
           focus: "series",
         },
         data: generateYearsArray().map(
-          (year, index) => updatedInputValue * 0.045 * (index + 1)
+          (year, index) => updatedInputValue * 0.05 * (index + 1) // Opdater procentdelen til 5%
         ),
       },
       {
