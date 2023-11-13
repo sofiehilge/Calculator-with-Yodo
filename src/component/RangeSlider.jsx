@@ -1,17 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function RangeSlider(props) {
+function RangeSlider({ value, onChangeAmount }) {
   const [amount, setAmount] = useState(1000); // Initial beløb
+  const [formattedAmount, setFormattedAmount] = useState("");
+
+  const formatAmount = (value) => {
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "EUR",
+    });
+    return formatter.format(value);
+  };
+  useEffect(() => {
+    setFormattedAmount(formatAmount(amount));
+  }, [amount]);
 
   const handleAmountChange = (e) => {
-    setAmount(e.target.value);
-    props.onChangeAmount(e.target.value); // Send det valgte beløb til forældrekomponenten
+    const newAmount = parseInt(e.target.value, 10);
+    setAmount(newAmount);
+    onChangeAmount(newAmount); // Send det valgte beløb til forældrekomponenten
   };
 
   return (
     <div className="my-5">
-      <label htmlFor="amount" className="block text-sm font-medium">
-        Select amount: €{amount}
+      <label
+        htmlFor="amount"
+        className="block text-sm font-medium text-gray-500"
+      >
+        Increase your balance by{" "}
+        <span className="text-black">{formattedAmount} €</span>
       </label>
       <input
         type="range"

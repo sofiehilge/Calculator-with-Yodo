@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import RangeSlider from "./RangeSlider";
 
-const FormHaris = ({ handleInputValue, handlePlanChange }) => {
+const FormHaris = ({
+  handleInputValue,
+  handlePlanChange,
+  totalValue,
+  handleAmountChange,
+}) => {
   // Options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
-    { label: "Good Plan (4.5%)", value: 4.5 },
+    { label: "Good Plan (5%)", value: 5 },
   ];
 
   // Handle and update values
   const [obtainedValue, setObtainedValue] = useState(2.5);
-  const [totalValue, setTotalValue] = useState(1000);
   const [output, setOutput] = useState(0);
 
   // Calculate function
@@ -20,8 +23,8 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
     if (!isNaN(totalValueNum) && totalValueNum !== 0) {
       if (obtainedValue === 2.5) {
         calculatedOutput = totalValueNum * 0.025;
-      } else if (obtainedValue === 4.5) {
-        calculatedOutput = totalValueNum * 0.045;
+      } else if (obtainedValue === 5) {
+        calculatedOutput = totalValueNum * 0.05;
       }
     }
 
@@ -33,7 +36,8 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
     const calculatedOutput = calculate();
     setOutput(calculatedOutput);
     handleInputValue(totalValue);
-  }, [totalValue, obtainedValue]);
+    handlePlanChange(obtainedValue);
+  }, [totalValue, obtainedValue, handleInputValue, handlePlanChange]);
 
   // Update state when changing obtainedValue
   useEffect(() => {
@@ -41,11 +45,6 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
     setOutput(calculatedOutput);
     handleInputValue(totalValue);
   }, [totalValue, obtainedValue]);
-
-  const handleAmountChange = (inputValue) => {
-    setTotalValue(inputValue);
-    handlePlanChange(obtainedValue); // Opdater denne linje for at sende den rigtige værdi
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,9 +73,7 @@ const FormHaris = ({ handleInputValue, handlePlanChange }) => {
             ))}
           </select>
         </label>
-        <div>
-          <RangeSlider onChangeAmount={handleAmountChange} />
-        </div>
+
         <h2 className="flex">Your output after one year €{output}</h2>
       </form>
     </div>
