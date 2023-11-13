@@ -13,9 +13,11 @@ const OutputComp = ({ updatedInputValue, selectedPlan }) => {
 
       {selectedPlan === 5 && (
         <div className="text-blue-600 ">
+
           <p>1 year with the Good Plan is €{updatedInputValue * 0.5}</p>
           <p>3 years with the Good Plan is €{updatedInputValue * 0.5 * 3}</p>
           <p>6 years with the Good Plan is €{updatedInputValue * 0.5 * 6}</p>
+
         </div>
       )}
     </div>

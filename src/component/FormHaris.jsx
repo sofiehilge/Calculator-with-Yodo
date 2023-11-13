@@ -20,12 +20,14 @@ const FormHaris = ({
   const calculate = () => {
     const totalValueNum = parseFloat(totalValue);
     let calculatedOutput = 0;
+
     if (!isNaN(totalValueNum) && totalValueNum !== 0) {
       if (obtainedValue === 2.5) {
         calculatedOutput = totalValueNum * 0.025;
       } else if (obtainedValue === 5) {
         calculatedOutput = totalValueNum * 0.05;
       }
+
     }
 
     return isNaN(calculatedOutput) ? 0 : calculatedOutput;
@@ -46,6 +48,12 @@ const FormHaris = ({
     handleInputValue(totalValue);
   }, [totalValue, obtainedValue]);
 
+
+  const handleAmountChange = (inputValue) => {
+    setTotalValue(inputValue);
+    handlePlanChange(obtainedValue);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     calculate();
@@ -58,13 +66,15 @@ const FormHaris = ({
         onSubmit={handleSubmit}
         className="flex w-full gap-4 p-8 text-center"
       >
-        <label className="flex-col">
-          Which plan are you interested in?
-          <select
-            required
-            value={obtainedValue}
-            onChange={(e) => setObtainedValue(parseFloat(e.target.value))}
-            className="block w-full bg-white border border-black rounded"
+        {options.map((option, index) => (
+          <button
+            key={index}
+            className={`p-3 w-full rounded-full ${
+              obtainedValue === option.value
+                ? "bg-black text-white border-orange-400"
+                : "bg-white text-black border-gray-300 hover:bg-gray-200"
+            }`}
+            onClick={() => setObtainedValue(option.value)}
           >
             {options.map((option, index) => (
               <option key={index} value={option.value}>
@@ -73,6 +83,12 @@ const FormHaris = ({
             ))}
           </select>
         </label>
+            {option.label}
+          </button>
+        ))}
+        <div>
+          <RangeSlider onChangeAmount={handleAmountChange} />
+        </div>
 
         <h2 className="flex">Your output after one year €{output}</h2>
       </form>
