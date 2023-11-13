@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
+import RangeSlider from "./RangeSlider";
 
-const FormHaris = ({
-  handleInputValue,
-  handlePlanChange,
-  totalValue,
-  handleAmountChange,
-}) => {
+const FormHaris = ({ handleInputValue, handlePlanChange, totalValue }) => {
   // Options
   const options = [
     { label: "Free Plan (2.5%)", value: 2.5 },
     { label: "Good Plan (5%)", value: 5 },
   ];
 
-  // Handle and update values
+  // Håndter og opdater værdier
   const [obtainedValue, setObtainedValue] = useState(2.5);
   const [output, setOutput] = useState(0);
 
-  // Calculate function
+  // Beregningsfunktion
   const calculate = () => {
     const totalValueNum = parseFloat(totalValue);
     let calculatedOutput = 0;
@@ -27,13 +23,12 @@ const FormHaris = ({
       } else if (obtainedValue === 5) {
         calculatedOutput = totalValueNum * 0.05;
       }
-
     }
 
     return isNaN(calculatedOutput) ? 0 : calculatedOutput;
   };
 
-  // Update totalValue and obtainedValue after calculation
+  // Opdater totalValue og obtainedValue efter beregning
   useEffect(() => {
     const calculatedOutput = calculate();
     setOutput(calculatedOutput);
@@ -41,18 +36,12 @@ const FormHaris = ({
     handlePlanChange(obtainedValue);
   }, [totalValue, obtainedValue, handleInputValue, handlePlanChange]);
 
-  // Update state when changing obtainedValue
+  // Opdater state ved ændring af obtainedValue
   useEffect(() => {
     const calculatedOutput = calculate();
     setOutput(calculatedOutput);
     handleInputValue(totalValue);
   }, [totalValue, obtainedValue]);
-
-
-  const handleAmountChange = (inputValue) => {
-    setTotalValue(inputValue);
-    handlePlanChange(obtainedValue);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,24 +60,14 @@ const FormHaris = ({
             key={index}
             className={`p-3 w-full rounded-full ${
               obtainedValue === option.value
-                ? "bg-black text-white"
-                : "bg-white text-black"
+                ? "bg-black text-white border-2 border-[#3183CC]"
+                : "bg-black text-white"
             }`}
             onClick={() => setObtainedValue(option.value)}
           >
-            {options.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
             {option.label}
           </button>
         ))}
-        <div>
-          <RangeSlider onChangeAmount={handleAmountChange} />
-        </div>
       </form>
     </div>
   );

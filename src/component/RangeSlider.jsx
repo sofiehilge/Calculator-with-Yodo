@@ -22,8 +22,8 @@ function RangeSlider({ value, onChangeAmount }) {
   };
 
   return (
-    <div className="">
-      <label htmlFor="amount" className="flex mt-4 text-lg ">
+    <>
+      <label htmlFor="amount" className="flex justify-center mt-6 text-lg">
         Select amount: {amount}€
       </label>
       <input
@@ -34,10 +34,9 @@ function RangeSlider({ value, onChangeAmount }) {
         step={500} // Opdater trin op/ned med 500€
         value={amount}
         onChange={handleAmountChange}
-        className="w-full h-1 bg-white rounded appearance-none focus:outline-none focus:shadow-outline"
-        
+        className="w-full h-1 bg-white rounded appearance-none focus:outline-none"
       />
-    </div>
+    </>
   );
 }
 

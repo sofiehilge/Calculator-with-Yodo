@@ -22,20 +22,20 @@ function App() {
   };
   return (
     <>
-      <h1 className="flex justify-center p-4 text-[30px] font-bold text-white">
+      <h1 className="flex justify-center p-4 text-[30px] font-bold text-[#3183CC]">
         withyodo.com
       </h1>
       <FormHaris
         handleInputValue={handleInputValue}
         handlePlanChange={handlePlanChange}
-       totalValue={totalValue}
+        totalValue={totalValue}
       />
-      <OutputComp
-        updatedInputValue={updatedInputValue}
-        selectedPlan={selectedPlan}
-      />
-      <div className="m-4 border rounded-xl solid bg-[#F6F6F6] px-10 py-10" >
+      <div className="p-10 m-4 border-2 border-[#3183CC] rounded-xl">
         <Echart updatedInputValue={updatedInputValue} />
+        <OutputComp
+          updatedInputValue={updatedInputValue}
+          selectedPlan={selectedPlan}
+        />
         <RangeSlider value={totalValue} onChangeAmount={handleAmountChange} />
       </div>
     </>

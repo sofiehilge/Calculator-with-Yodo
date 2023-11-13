@@ -4,7 +4,7 @@ const OutputComp = ({ updatedInputValue, selectedPlan }) => {
   return (
     <div className="mb-4 text-center">
       {selectedPlan === 2.5 && (
-        <div className="flex justify-between m-4 text-blue-900">
+        <div className="flex justify-between m-4">
           <p>In 1 year {updatedInputValue * 0.025}€</p>
           <p>In 3 years {updatedInputValue * 0.025 * 3}€</p>
           <p>In 6 years {updatedInputValue * 0.025 * 6}€</p>
@@ -12,7 +12,7 @@ const OutputComp = ({ updatedInputValue, selectedPlan }) => {
       )}
 
       {selectedPlan === 5 && (
-        <div className="flex justify-between m-4 text-blue-900">
+        <div className="flex justify-between m-4">
           <p>In 1 year {updatedInputValue * 0.05}€</p>
           <p>In 3 years {updatedInputValue * 0.05 * 3}€</p>
           <p>In 6 years {updatedInputValue * 0.05 * 6}€</p>

@@ -42,39 +42,36 @@ const Echart = ({ updatedInputValue }) => {
       },
     },
     legend: {
-
-      data: ["Good Plan 5%", "Free Plan 2.5%"], // Opdater navnet for at afspejle ændringen
+      data: ["Free Plan 2.5%", "Good Plan 5%"],
 
       textStyle: {
         fontFamily: "Inter, sans-serif",
         color: "#000",
         fontWeight: "medium",
-
-        /*   left: "-5%", */
         textAlign: "center",
         align: "center",
       },
-      selectedMode: false, //disable legend item click
-      icon: "circle", //set the legend to be a rectangle
+      selectedMode: false,
+      icon: "circle",
       itemWidth: 10,
       itemHeight: 10,
 
       borderColor: "#606778",
       borderWidth: 1,
       borderRadius: 12,
-      right: 10, // Adjust this value to position the legend
-      top: 0, // Adjust this value to vertically position the legend
+      right: 10,
+      top: 0,
       orient: "vertical",
       itemStyle: {
-        width: 3, // Adjust this value for the width of legend items
-        height: 3, // Adjust this value for the height of legend items
+        width: 3,
+        height: 3,
       },
     },
 
     grid: {
-      left: "-5%",
+      left: "-10%",
       right: "0%",
-      bottom: "10%",
+      bottom: "0%",
       containLabel: true,
     },
     xAxis: {
@@ -106,7 +103,7 @@ const Echart = ({ updatedInputValue }) => {
       type: "value",
       show: false,
       splitLine: {
-        show: false, // Set to false to hide the y-axis line
+        show: false,
       },
     },
     series: [
@@ -141,7 +138,6 @@ const Echart = ({ updatedInputValue }) => {
         },
         data: generateYearsArray().map(
           (year, index) => updatedInputValue * 0.05 * (index + 1)
-
         ),
       },
       {
@@ -181,12 +177,10 @@ const Echart = ({ updatedInputValue }) => {
   };
 
   return (
-
-    <div className="flex-col p-3 text-black">
-
+    <div className="flex-col text-black">
       <ReactEcharts
         option={option}
-        style={{ height: "30vh", width: "100%" }}
+        style={{ height: "40vh", width: "100%" }}
         opts={{ renderer: "svg" }}
       />
     </div>
