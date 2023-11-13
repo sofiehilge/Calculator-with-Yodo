@@ -9,9 +9,9 @@ function RangeSlider(props) {
   };
 
   return (
-    <div className="my-5">
-      <label htmlFor="amount" className="block text-sm font-medium">
-        Select amount: €{amount}
+    <div className="">
+      <label htmlFor="amount" className="flex mt-4 text-lg ">
+        Select amount: {amount}€
       </label>
       <input
         type="range"
