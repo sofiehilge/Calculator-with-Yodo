@@ -34,7 +34,7 @@ function App() {
         updatedInputValue={updatedInputValue}
         selectedPlan={selectedPlan}
       />
-      <div className="m-4 border rounded-xl solid bg-[#F6F6F6]">
+      <div className="m-4 border rounded-xl solid bg-[#F6F6F6] px-10 py-10" >
         <Echart updatedInputValue={updatedInputValue} />
         <RangeSlider value={totalValue} onChangeAmount={handleAmountChange} />
       </div>

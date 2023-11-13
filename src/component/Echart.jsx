@@ -16,10 +16,15 @@ const Echart = ({ updatedInputValue }) => {
 
   const option = {
     color: ["#3183CC", "#194266"],
-    title: {},
+    title: {
+      show: true,
+    text: "Projected\nBalance",
+    },
     textStyle: {
       fontFamily: "Montserrat, sans-serif",
       color: "#000",
+      /* overflow: "break",
+      width: 50 */
     },
     tooltip: {
       trigger: "axis",
@@ -43,13 +48,31 @@ const Echart = ({ updatedInputValue }) => {
         fontFamily: "Inter, sans-serif",
         color: "#000",
         fontWeight: "medium",
-        lineHeight: "1.25",
+  
+        /*   left: "-5%", */
+        textAlign: "center",
+        align: "center",
+      },
+      selectedMode: false, //disable legend item click
+      icon: "circle", //set the legend to be a rectangle
+      itemWidth: 2,
+      itemHeight: 2,
+     
+      borderColor: "#606778",
+      borderWidth: 1,
+      borderRadius: 12,
+      right: 10, // Adjust this value to position the legend
+      top: 0, // Adjust this value to vertically position the legend
+      orient: "vertical",
+      itemStyle: {
+        width: 3, // Adjust this value for the width of legend items
+        height: 3, // Adjust this value for the height of legend items
       },
     },
 
     grid: {
       left: "-5%",
-      right: "5%",
+      right: "0%",
       bottom: "10%",
       containLabel: true,
     },
@@ -63,9 +86,9 @@ const Echart = ({ updatedInputValue }) => {
         lineHeight: "10",
       },
       axisTick: {
-        show: false
+        show: false,
       },
-      
+
       type: "category",
       boundaryGap: false,
       data: generateYearsArray(),
@@ -156,10 +179,10 @@ const Echart = ({ updatedInputValue }) => {
   };
 
   return (
-    <div className="flex-col p-3 m-3 text-black xs={12} sm={12} md={12}">
+    <div className="flex-col text-black ">
       <ReactEcharts
         option={option}
-        style={{ height: "40vh", width: "100%" }}
+        style={{ height: "30vh", width: "100%" }}
         opts={{ renderer: "svg" }}
       />
     </div>
