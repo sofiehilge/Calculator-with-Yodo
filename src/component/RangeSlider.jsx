@@ -23,19 +23,27 @@ function RangeSlider({ value, onChangeAmount }) {
 
   return (
     <>
-      <label htmlFor="amount" className="flex justify-center mt-6 text-lg">
+      {/* <label htmlFor="amount" className="flex justify-center mt-6 text-lg">
         Select amount: {amount}€
-      </label>
-      <input
-        type="range"
-        id="amount"
-        min={1000} //1000€
-        max={100000} //100.000€
-        step={500} // Opdater trin op/ned med 500€
-        value={amount}
-        onChange={handleAmountChange}
-        className="w-full h-1 bg-white rounded appearance-none focus:outline-none"
-      />
+      </label> */}
+      <div className="container">
+        <div className="range-slider">
+          <input
+            type="range"
+            id="amount"
+            min={1000} //1000€
+            max={100000} //100.000€
+            step={500} // Opdater trin op/ned med 500€
+            value={amount}
+            onChange={handleAmountChange}
+            className="w-full h-1 bg-white rounded appearance-none focus:outline-none"
+          />
+        </div>
+        <div className="mt-2 w-full flex justify-between text-sm text-#606778">
+          <span>1.000€</span>
+          <span>100.000€</span>
+        </div>
+      </div>
     </>
   );
 }

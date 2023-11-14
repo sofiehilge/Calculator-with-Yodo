@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import RangeSlider from "./RangeSlider";
 
-const FormHaris = ({ handleInputValue, handlePlanChange, totalValue }) => {
+const CalcButtons = ({ handleInputValue, handlePlanChange, totalValue }) => {
   // Options
   const options = [
-    { label: "Free Plan (2.5%)", value: 2.5 },
     { label: "Good Plan (5%)", value: 5 },
+    { label: "Free Plan (2.5%)", value: 2.5 },
   ];
 
   // Håndter og opdater værdier
@@ -60,7 +59,11 @@ const FormHaris = ({ handleInputValue, handlePlanChange, totalValue }) => {
             key={index}
             className={`p-3 w-full rounded-full ${
               obtainedValue === option.value
-                ? "bg-black text-white border-2 border-[#3183CC]"
+                ? option.value === 5
+                  ? "bg-[#194266] text-white"
+                  : option.value === 2.5
+                  ? "bg-[#3183CC] text-white"
+                  : "bg-black text-white"
                 : "bg-black text-white"
             }`}
             onClick={() => setObtainedValue(option.value)}
@@ -73,4 +76,6 @@ const FormHaris = ({ handleInputValue, handlePlanChange, totalValue }) => {
   );
 };
 
-export default FormHaris;
+export default CalcButtons;
+
+//border-2 border-[#3183CC]
