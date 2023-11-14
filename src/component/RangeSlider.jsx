@@ -27,6 +27,7 @@ function RangeSlider({ value, onChangeAmount }) {
         Select amount: {amount}€
       </label> */}
       <div className="container">
+      <div>{amount}</div>
         <div className="range-slider">
           <input
             type="range"
