@@ -14,7 +14,7 @@ const Echart = ({ updatedInputValue }) => {
   };
 
   const option = {
-    color: ["#3183CC", "#194266"],
+    color: [ "#3183CC","#194266" ],
     title: {
       show: true,
       text: "Projected\nBalance",
@@ -83,6 +83,7 @@ const Echart = ({ updatedInputValue }) => {
         fontWeight: "medium",
         lineHeight: "10",
       },
+      
       axisTick: {
         show: false,
       },
@@ -107,39 +108,6 @@ const Echart = ({ updatedInputValue }) => {
       },
     },
     series: [
-      {
-        name: "Good Plan 5%",
-        type: "line",
-        stack: "Total",
-        smooth: true,
-        lineStyle: {
-          width: 0,
-        },
-        showSymbol: false,
-        areaStyle: {
-          opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(140, 0, 140, 1, [
-            {
-              offset: 0.3202,
-              color: "#194266",
-            },
-            {
-              offset: 0.8349,
-              color: "#3c5975",
-            },
-            {
-              offset: 0.9627,
-              color: "#516579",
-            },
-          ]),
-        },
-        emphasis: {
-          focus: "series",
-        },
-        data: generateYearsArray().map(
-          (year, index) => updatedInputValue * 0.05 * (index + 1)
-        ),
-      },
       {
         name: "Free Plan 2.5%",
         type: "line",
@@ -171,16 +139,49 @@ const Echart = ({ updatedInputValue }) => {
         },
         data: generateYearsArray().map(
           (year, index) => updatedInputValue * 0.025 * (index + 1)
-        ),
-      },
-    ],
+          ),
+        },
+        {
+          name: "Good Plan 5%",
+          type: "line",
+          stack: "Total",
+          smooth: true,
+          lineStyle: {
+            width: 0,
+          },
+          showSymbol: false,
+          areaStyle: {
+            opacity: 0.8,
+            color: new echarts.graphic.LinearGradient(140, 0, 140, 1, [
+              {
+                offset: 0.3202,
+                color: "#194266",
+              },
+              {
+                offset: 0.8349,
+                color: "#3c5975",
+              },
+              {
+                offset: 0.9627,
+                color: "#516579",
+              },
+            ]),
+          },
+          emphasis: {
+            focus: "series",
+          },
+          data: generateYearsArray().map(
+            (year, index) => updatedInputValue * 0.05 * (index + 1)
+          ),
+        },
+      ],
   };
 
   return (
     <div className="flex-col text-black">
       <ReactEcharts
         option={option}
-        style={{ height: "40vh", width: "100%" }}
+        style={{ height: "300px", width: "100%" }}
         opts={{ renderer: "svg" }}
       />
     </div>
