@@ -3,6 +3,7 @@ import Echart from "./component/Echart";
 import CalcButtons from "./component/CalcButtons";
 import OutputComp from "./component/OutputComp";
 import RangeSlider from "./component/RangeSlider";
+import StyledSlider from "./component/StyledSlider";
 
 function App() {
   const [updatedInputValue, setUpdatedInputValue] = useState(0);
@@ -18,6 +19,7 @@ function App() {
   };
 
   const handleAmountChange = (inputValue) => {
+    console.log(`Selected amount: ${inputValue}`);
     setTotalValue(inputValue);
   };
   return (
@@ -30,13 +32,14 @@ function App() {
         handlePlanChange={handlePlanChange}
         totalValue={totalValue}
       />
-      <div className="p-10 m-4 border-2 border-[#3183CC] rounded-xl bg-[#f2f2f2]">
+      <div className="p-10 m-4 border-2 border-[#3183CC] rounded-xl bg-[#white]">
         <Echart updatedInputValue={updatedInputValue} />
         <OutputComp
           updatedInputValue={updatedInputValue}
           selectedPlan={selectedPlan}
         />
-        <RangeSlider value={totalValue} onChangeAmount={handleAmountChange} />
+      
+        <StyledSlider value={totalValue} onChangeAmount={handleAmountChange}/>
       </div>
     </>
   );
