@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function RangeSlider({ value, onChangeAmount }) {
-  const [amount, setAmount] = useState(1000); // Initial beløb
+  const [amount, setAmount] = useState(1000);
   const [formattedAmount, setFormattedAmount] = useState("");
 
   const formatAmount = (value) => {
@@ -18,7 +18,7 @@ function RangeSlider({ value, onChangeAmount }) {
   const handleAmountChange = (e) => {
     const newAmount = parseInt(e.target.value, 10);
     setAmount(newAmount);
-    onChangeAmount(newAmount); // Send det valgte beløb til forældrekomponenten
+    onChangeAmount(newAmount);
   };
 
   return (
@@ -27,7 +27,7 @@ function RangeSlider({ value, onChangeAmount }) {
         Select amount: {amount}€
       </label> */}
       <div className="container">
-      <div>{amount}</div>
+        <div>{amount}</div>
         <div className="range-slider">
           <input
             type="range"
@@ -37,10 +37,9 @@ function RangeSlider({ value, onChangeAmount }) {
             step={500} // Opdater trin op/ned med 500€
             value={amount}
             onChange={handleAmountChange}
-            className="w-full h-1 bg-white rounded appearance-none focus:outline-none"
           />
         </div>
-        <div className="mt-2 w-full flex justify-between text-sm text-#606778">
+        <div>
           <span>1.000€</span>
           <span>100.000€</span>
         </div>

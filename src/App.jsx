@@ -38,8 +38,7 @@ function App() {
           updatedInputValue={updatedInputValue}
           selectedPlan={selectedPlan}
         />
-      
-        <StyledSlider value={totalValue} onChangeAmount={handleAmountChange}/>
+        <StyledSlider value={totalValue} onChangeAmount={handleAmountChange} />
       </div>
     </>
   );
