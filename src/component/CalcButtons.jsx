@@ -52,15 +52,15 @@ const CalcButtons = ({ handleInputValue, handlePlanChange, totalValue }) => {
   };
 
   return (
-    <div className="items-center justify-center w-full p-4">
+    <div className="items-center justify-center w-full">
       <form
         onSubmit={handleSubmit}
-        className="flex w-full gap-4 p-8 text-center"
+        className="flex flex-col w-full gap-2 px-10 text-center"
       >
         {options.map((option, index) => (
           <button
             key={index}
-            className={`p-3 w-full rounded-full ${
+            className={`p-1 w-24 text-xs rounded-full ${
               obtainedValue === option.value
                 ? option.value === 5
                   ? "bg-[#194266] text-white"

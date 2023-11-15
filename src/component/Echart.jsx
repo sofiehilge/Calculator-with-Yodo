@@ -17,7 +17,7 @@ const Echart = ({ updatedInputValue }) => {
     color: [ "#3183CC","#194266" ],
     title: {
       show: true,
-      text: "Projected\nBalance",
+      text: "PROJECTED\nBALANCE",
     },
     textStyle: {
       fontFamily: "Montserrat, sans-serif",
@@ -41,7 +41,7 @@ const Echart = ({ updatedInputValue }) => {
         },
       },
     },
-    legend: {
+    /* legend: {
       data: ["Free Plan 2.5%", "Good Plan 5%"],
 
       textStyle: {
@@ -66,7 +66,7 @@ const Echart = ({ updatedInputValue }) => {
         width: 3,
         height: 3,
       },
-    },
+    }, */
 
     grid: {
       left: "-10%",
@@ -181,7 +181,7 @@ const Echart = ({ updatedInputValue }) => {
     <div className="flex-col text-black">
       <ReactEcharts
         option={option}
-        style={{ height: "300px", width: "100%" }}
+        style={{ height: "160px", width: "100%" }}
         opts={{ renderer: "svg" }}
       />
     </div>
