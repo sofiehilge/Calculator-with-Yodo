@@ -23,8 +23,11 @@ const CalcButtons = ({ handleInputValue, handlePlanChange, totalValue }) => {
         calculatedOutput = totalValueNum * 0.05;
       }
     }
-
-    return isNaN(calculatedOutput) ? 0 : calculatedOutput;
+//format the calculated output with dote for every three digits
+    return isNaN(calculatedOutput) ? 0 : calculatedOutput.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   };
 
   // Opdater totalValue og obtainedValue efter beregning
@@ -67,6 +70,21 @@ const CalcButtons = ({ handleInputValue, handlePlanChange, totalValue }) => {
                 : "bg-black text-white"
             }`}
             onClick={() => setObtainedValue(option.value)}
+            style={{
+              transition: "transform 0.3s ease",
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
+            onFocus={(e) =>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onBlur={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
           >
             {option.label}
           </button>
