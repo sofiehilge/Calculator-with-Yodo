@@ -24,21 +24,45 @@ function App() {
   };
   return (
     <>
-      <h1 className="flex justify-center p-4 text-[30px] font-bold text-[#3183CC]">
-        withyodo.com
-      </h1>
-      <CalcButtons
-        handleInputValue={handleInputValue}
-        handlePlanChange={handlePlanChange}
-        totalValue={totalValue}
-      />
-      <div className="p-10 m-4 border-2 border-[#3183CC] rounded-xl bg-[#white]">
-        <Echart updatedInputValue={updatedInputValue} />
-        <OutputComp
-          updatedInputValue={updatedInputValue}
-          selectedPlan={selectedPlan}
-        />
-        <StyledSlider value={totalValue} onChangeAmount={handleAmountChange} />
+      <div className="flex lg:flex-row">
+        <div className="lg:w-[565px] p-4">
+          <h1 className=" text-lg font-bold m-4 uppercase">
+            Calculate your Balanced Output
+          </h1>
+          <p className="text-gray-500 text-base m-4 ">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi
+            quia rem voluptates et aliquid, quas velit sit vero sint. Harum
+            velit necessitatibus minima expedita aspernatur est porro
+            praesentium facere veniam? Ullam mollitia veritatis quasi
+            perferendis ipsa laborum voluptatem provident ab culpa, laudantium
+            odio soluta optio atque. Et mollitia vel impedit saepe
+            exercitationem adipisci explicabo, aliquam error pariatur labore
+            esse. Animi!
+          </p>
+        </div>
+
+        <div className=" sm:grid sm:grid-cols-3 gap-4">
+          <div className="relative sm:col-span-3 p-4 border-2 border-[#3183CC] rounded-xl bg-[#white] w-[358.4px] h-[300px]">
+            <Echart updatedInputValue={updatedInputValue} />
+            <OutputComp
+              updatedInputValue={updatedInputValue}
+              selectedPlan={selectedPlan}
+            />
+
+            <StyledSlider
+              value={totalValue}
+              onChangeAmount={handleAmountChange}
+            />
+            <div className=" absolute bottom-56 right-0">
+              {/* calc buttons in the top corner of Echart */}
+              <CalcButtons
+                handleInputValue={handleInputValue}
+                handlePlanChange={handlePlanChange}
+                totalValue={totalValue}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
