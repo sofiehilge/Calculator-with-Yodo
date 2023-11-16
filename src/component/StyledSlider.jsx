@@ -55,10 +55,12 @@ const StyledTrack = styled.div`
 
 const Track = (props, state) => <StyledTrack {...props} index={state.index} />;
 
-const StyledSlider = ({ value, onChangeAmount }) => {
+const StyledSlider = ({ value, onChangeAmount, selectedCurrency, currencyInfo }) => {
   const handleAmountChange = (newValue) => {
     onChangeAmount(newValue);
   };
+
+  const convertedValue = value * currencyInfo[selectedCurrency]
   return (
     <div>
       <CustomSlider
@@ -76,13 +78,13 @@ const StyledSlider = ({ value, onChangeAmount }) => {
         min={1000}
         max={100000}
         step={500}
-        value={value}
+        value={convertedValue}
         onChange={handleAmountChange}
         shouldForwardProp={(prop) => !["re"].includes(prop)}
       />
       <div className="mt-2 w-full flex justify-between text-sm text-#606778">
-        <span>1,000 €</span>
-        <span>100,000 €</span>
+      <span>{numeral(currencyInfo[selectedCurrency]).format("0,0")} {selectedCurrency}</span>
+        <span>{numeral(currencyInfo[selectedCurrency] * 100000).format("0,0")} {selectedCurrency}</span>
       </div>
     </div>
   );

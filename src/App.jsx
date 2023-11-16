@@ -21,21 +21,18 @@ function App() {
     setSelectedPlan(plan);
   };
 
-    //currency convertion:
-    const [amount, setAmount] = useState(0);
-    const [convertedAmount, setConvertedAmount] = useState(0);
-  
-    const { data: currencyInfo, error } = useCurrencyInfo(selectedCurrency);
-    const options = Object.keys(currencyInfo);
-  
-    const convert = useCallback(() => {
-      if (currencyInfo && Object.keys(currencyInfo).length > 0) {
-        setConvertedAmount(amount * currencyInfo[selectedCurrency]);
-      }
-    }, [amount, currencyInfo, selectedCurrency]);
+  //currency convertion:
+  const [amount, setAmount] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(0);
 
+  const { data: currencyInfo, error } = useCurrencyInfo(selectedCurrency);
+  const options = Object.keys(currencyInfo);
 
-
+  const convert = useCallback(() => {
+    if (currencyInfo && Object.keys(currencyInfo).length > 0) {
+      setConvertedAmount(amount * currencyInfo[selectedCurrency]);
+    }
+  }, [amount, currencyInfo, selectedCurrency]);
 
   //updating input value in styledslider
 
@@ -43,9 +40,7 @@ function App() {
     console.log(`Selected amount: ${inputValue}`);
     setTotalValue(inputValue);
     setAmount(inputValue);
-    convert();
   };
-
 
   return (
     <>
@@ -77,8 +72,10 @@ function App() {
             <StyledSlider
               value={totalValue}
               onChangeAmount={handleAmountChange}
+              selectedCurrency={selectedCurrency}
+              currencyInfo={currencyInfo}
             />
-      
+
             <div className=" absolute bottom-56 right-0">
               {/* calc buttons in the top corner of Echart */}
               <CalcButtons
