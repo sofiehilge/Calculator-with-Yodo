@@ -33,15 +33,12 @@ function App() {
             Calculate your Balanced Output
           </h1>
           <p className="m-4 text-base text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
-            earum in praesentium cum ab tenetur. Non libero facilis laborum
-            possimus, quidem eius, fuga nobis tenetur dolore itaque, cumque
-            ullam cum ea quam illo ipsum! Corporis neque, vero repudiandae
-            soluta amet consequatur impedit. Maxime consequatur, deleniti
-            aliquam, quasi fuga magni perspiciatis deserunt error, nostrum enim
-            facilis aut exercitationem obcaecati. Eos rerum numquam harum non
-            quas repudiandae explicabo fuga, voluptates voluptate tempore
-            aliquam, temporibus nam deserunt dicta quod nisi.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+            repudiandae obcaecati ullam, deserunt possimus nostrum error
+            dignissimos corporis eius doloremque repellendus! Soluta, temporibus
+            veritatis animi facilis nemo iusto distinctio quod. Dolore natus
+            impedit quibusdam in incidunt nemo? Culpa dicta maxime id
+            repudiandae iusto iure et. Nobis excepturi eius eligendi voluptas!
           </p>
         </div>
 
