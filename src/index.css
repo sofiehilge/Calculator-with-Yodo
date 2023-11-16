@@ -3,5 +3,57 @@
 @tailwind utilities;
 
 body {
-  background-color: white;
- }
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0 10px;
+    padding: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .header {
+    margin: 1rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    max-width: 600px;
+  }
+
+  .chart {
+    width: 100%;
+  }
+
+  .output {
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .slider {
+    width: 100%;
+  }
+
+  .buttons {
+    display: flex;
+    margin-top: 1rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    .container {
+      flex-direction: row;
+    }
+
+    .content {
+      width: 50%;
+    }
+  }

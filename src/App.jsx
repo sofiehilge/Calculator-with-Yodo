@@ -1,9 +1,11 @@
+// App.js
 import React, { useState } from "react";
 import Echart from "./component/Echart";
 import CalcButtons from "./component/CalcButtons";
 import OutputComp from "./component/OutputComp";
 import RangeSlider from "./component/RangeSlider";
 import StyledSlider from "./component/StyledSlider";
+import "./index.css"; // Importerer CSS-stilen
 
 function App() {
   const [updatedInputValue, setUpdatedInputValue] = useState(0);
@@ -22,27 +24,29 @@ function App() {
     console.log(`Selected amount: ${inputValue}`);
     setTotalValue(inputValue);
   };
+
   return (
     <>
-      <div className="flex lg:flex-row">
-        <div className="lg:w-[565px] p-4">
-          <h1 className=" text-lg font-bold m-4 uppercase">
+      <div className="container">
+        <div className="header lg:w-[565px] p-4">
+          <h1 className="m-4 text-lg font-bold uppercase">
             Calculate your Balanced Output
           </h1>
-          <p className="text-gray-500 text-base m-4 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi
-            quia rem voluptates et aliquid, quas velit sit vero sint. Harum
-            velit necessitatibus minima expedita aspernatur est porro
-            praesentium facere veniam? Ullam mollitia veritatis quasi
-            perferendis ipsa laborum voluptatem provident ab culpa, laudantium
-            odio soluta optio atque. Et mollitia vel impedit saepe
-            exercitationem adipisci explicabo, aliquam error pariatur labore
-            esse. Animi!
+          <p className="m-4 text-base text-gray-500">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
+            earum in praesentium cum ab tenetur. Non libero facilis laborum
+            possimus, quidem eius, fuga nobis tenetur dolore itaque, cumque
+            ullam cum ea quam illo ipsum! Corporis neque, vero repudiandae
+            soluta amet consequatur impedit. Maxime consequatur, deleniti
+            aliquam, quasi fuga magni perspiciatis deserunt error, nostrum enim
+            facilis aut exercitationem obcaecati. Eos rerum numquam harum non
+            quas repudiandae explicabo fuga, voluptates voluptate tempore
+            aliquam, temporibus nam deserunt dicta quod nisi.
           </p>
         </div>
 
-        <div className=" sm:grid sm:grid-cols-3 gap-4">
-          <div className="relative sm:col-span-3 p-4 border-2 border-[#3183CC] rounded-xl bg-[#white] w-[358.4px] h-[300px]">
+        <div className="border-2 border-[#3183CC] rounded content">
+          <div className="relative sm:col-span-3 p-4 bg-[#white] w-[358.4px] h-[300px]">
             <Echart updatedInputValue={updatedInputValue} />
             <OutputComp
               updatedInputValue={updatedInputValue}
@@ -53,8 +57,7 @@ function App() {
               value={totalValue}
               onChangeAmount={handleAmountChange}
             />
-            <div className=" absolute bottom-56 right-0">
-              {/* calc buttons in the top corner of Echart */}
+            <div className="absolute right-0 bottom-56">
               <CalcButtons
                 handleInputValue={handleInputValue}
                 handlePlanChange={handlePlanChange}
