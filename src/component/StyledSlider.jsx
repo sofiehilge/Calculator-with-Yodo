@@ -1,15 +1,17 @@
 import React from "react";
 import ReactSlider from "react-slider";
 import styled from "styled-components";
+import numeral from "numeral";
 
 const CustomSlider = styled(ReactSlider)`
   width: 100%;
-  height: 4px;
+  height: 5px;
   border: 0;
   border-radius: 100px;
   background: #f6f6f6;
   outline: none;
   left: 0px;
+  margin-bottom: 10px;
 `;
 
 const StyledThumb = styled.div`
@@ -22,10 +24,10 @@ const StyledThumb = styled.div`
   height: 20px;
   line-height: 20px;
   text-align: center;
-  width: 34px;
+  width: 35px;
   cursor: pointer;
   font-size: 8px;
-  font-weight: 800;
+  font-weight: 600;
   text-decoration: none;
   transition: transform 0.1s ease;
   &:hover,
@@ -34,7 +36,7 @@ const StyledThumb = styled.div`
     outline: none;
   }
   &:first-child {
-    left: 0; /* align the first thumb to the left edge */
+    left: 0;
   }
   &:last-child {
     transform: translateX(100%) translateX(-34px);
@@ -42,7 +44,7 @@ const StyledThumb = styled.div`
 `;
 
 const Thumb = (props, state) => (
-  <StyledThumb {...props}>{state.valueNow}</StyledThumb>
+  <StyledThumb {...props}>{numeral(state.valueNow).format("0,0")}</StyledThumb>
 );
 
 const StyledTrack = styled.div`
@@ -79,8 +81,8 @@ const StyledSlider = ({ value, onChangeAmount }) => {
         shouldForwardProp={(prop) => !["re"].includes(prop)}
       />
       <div className="mt-2 w-full flex justify-between text-sm text-#606778">
-        <span>1.000€</span>
-        <span>100.000€</span>
+        <span>1,000 €</span>
+        <span>100,000 €</span>
       </div>
     </div>
   );
