@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Echart from "./component/Echart";
 import CalcButtons from "./component/CalcButtons";
 import OutputComp from "./component/OutputComp";
-import RangeSlider from "./component/RangeSlider";
+//import RangeSlider from "./component/RangeSlider";
 import StyledSlider from "./component/StyledSlider";
+import CurrencySelector from "./component/CurrencySelector";
+import useCurrencyInfo from "./hooks/useCurrencyInfo";
 
 function App() {
   const [updatedInputValue, setUpdatedInputValue] = useState(0);
   const [selectedPlan, setSelectedPlan] = useState(2.5);
   const [totalValue, setTotalValue] = useState(1000);
+  const [selectedCurrency, setSelectedCurrency] = useState("eur");
 
   const handleInputValue = (inputValue) => {
     setUpdatedInputValue(inputValue);
@@ -18,10 +21,32 @@ function App() {
     setSelectedPlan(plan);
   };
 
+    //currency convertion:
+    const [amount, setAmount] = useState(0);
+    const [convertedAmount, setConvertedAmount] = useState(0);
+  
+    const { data: currencyInfo, error } = useCurrencyInfo(selectedCurrency);
+    const options = Object.keys(currencyInfo);
+  
+    const convert = useCallback(() => {
+      if (currencyInfo && Object.keys(currencyInfo).length > 0) {
+        setConvertedAmount(amount * currencyInfo[selectedCurrency]);
+      }
+    }, [amount, currencyInfo, selectedCurrency]);
+
+
+
+
+  //updating input value in styledslider
+
   const handleAmountChange = (inputValue) => {
     console.log(`Selected amount: ${inputValue}`);
     setTotalValue(inputValue);
+    setAmount(inputValue);
+    convert();
   };
+
+
   return (
     <>
       <div className="flex lg:flex-row">
@@ -53,6 +78,7 @@ function App() {
               value={totalValue}
               onChangeAmount={handleAmountChange}
             />
+      
             <div className=" absolute bottom-56 right-0">
               {/* calc buttons in the top corner of Echart */}
               <CalcButtons
@@ -62,6 +88,11 @@ function App() {
               />
             </div>
           </div>
+          <CurrencySelector
+            currencyOptions={options}
+            selectedCurrency={selectedCurrency}
+            onCurrencyChange={(currency) => setSelectedCurrency(currency)}
+          />
         </div>
       </div>
     </>
