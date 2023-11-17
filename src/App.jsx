@@ -6,6 +6,7 @@ import OutputComp from "./component/OutputComp";
 import RangeSlider from "./component/RangeSlider";
 import StyledSlider from "./component/StyledSlider";
 import "./index.css"; // Importerer CSS-stilen
+import CurrencyConverter from "./component/CurrencyConverter";
 
 function App() {
   const [updatedInputValue, setUpdatedInputValue] = useState(0);
@@ -32,14 +33,7 @@ function App() {
           <h1 className="m-4 text-lg font-bold uppercase">
             Calculate your Balanced Output
           </h1>
-          <p className="m-4 text-base text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-            repudiandae obcaecati ullam, deserunt possimus nostrum error
-            dignissimos corporis eius doloremque repellendus! Soluta, temporibus
-            veritatis animi facilis nemo iusto distinctio quod. Dolore natus
-            impedit quibusdam in incidunt nemo? Culpa dicta maxime id
-            repudiandae iusto iure et. Nobis excepturi eius eligendi voluptas!
-          </p>
+          <CurrencyConverter/>
         </div>
 
         <div className="border-2 border-[#3183CC] rounded content">
