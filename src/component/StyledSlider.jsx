@@ -44,7 +44,7 @@ const StyledThumb = styled.div`
 `;
 
 const Thumb = (props, state) => (
-  <StyledThumb {...props}>{numeral(state.valueNow).format("0,0")}</StyledThumb>
+  <StyledThumb {...props}>{state.valueNow}</StyledThumb>
 );
 
 const StyledTrack = styled.div`
@@ -81,8 +81,8 @@ const StyledSlider = ({ value, onChangeAmount }) => {
         shouldForwardProp={(prop) => !["re"].includes(prop)}
       />
       <div className="mt-2 w-full flex justify-between text-sm text-#606778">
-        <span>1,000 €</span>
-        <span>100,000 €</span>
+        <span>1.000 €</span>
+        <span>100.000 €</span>
       </div>
     </div>
   );
