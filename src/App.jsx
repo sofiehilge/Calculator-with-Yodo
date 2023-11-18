@@ -30,10 +30,7 @@ function App() {
     <>
       <div className="container">
         <div className="header lg:w-[565px] p-4">
-          <h1 className="m-4 text-lg font-bold uppercase">
-            Calculate your Balanced Output
-          </h1>
-          <CurrencyConverter/>
+          <CurrencyConverter />
         </div>
 
         <div className="border-2 border-[#3183CC] rounded content">

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import useCurrencyInfo from "../hooks/useCurrencyInfo.js";
 import InputBox from "./inputBox.jsx";
 
-
 function CurrencyConverter() {
   const [amount, setAmount] = useState("");
   const [from, setFrom] = useState("eur");
@@ -35,25 +34,21 @@ function CurrencyConverter() {
 
   const formatValue = (value) => {
     return numeral(value).format("0,0.00");
-  }
-  
+  };
 
   return (
-    <div
-      className="w-full h- flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
-     
-    >
+    <div className="flex flex-wrap items-center justify-center w-full bg-no-repeat bg-cover h-">
       <div className="w-full">
-        <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
+        <div className="w-full max-w-md p-5 mx-auto border border-black rounded-lg backdrop-blur-sm">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               convert();
             }}
           >
-            <div className="w-full mb-1">
+            <div className="w-full mb-2">
               <InputBox
-                label="from"
+                label="From"
                 amount={amount}
                 currencyOptions={options}
                 onCurrencyChange={(currency) => setFrom(currency)}
@@ -64,7 +59,7 @@ function CurrencyConverter() {
             </div>
             <div className="relative w-full h-0.5">
               <button
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-black text-white px-2 py-0.5"
                 onClick={swap}
               >
                 Swap
@@ -72,7 +67,7 @@ function CurrencyConverter() {
             </div>
             <div className="w-full mb-1">
               <InputBox
-                label="to"
+                label="To"
                 currencyOptions={options}
                 amount={convertedAmount}
                 onCurrencyChange={(currency) => setTo(currency)}
@@ -82,7 +77,7 @@ function CurrencyConverter() {
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg"
+              className="w-full text-white bg-black rounded-lg"
             >
               Convert {from.toUpperCase()} to {to.toUpperCase()}
             </button>
