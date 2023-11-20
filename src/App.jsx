@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <div className="container">
-        <div className="header lg:w-[565px] p-4">
+        <div className="header lg:w-[565px] p-4 ">
           <CurrencyConverter />
         </div>
 
