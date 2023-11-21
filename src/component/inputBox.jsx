@@ -1,4 +1,5 @@
 import React, { useId, useState } from "react";
+import useNumberFormatter from "../hooks/useNumberformatter.js";
 
 function InputBox({
   label,
@@ -13,6 +14,8 @@ function InputBox({
 }) {
   const id = useId();
   const [amountValue, setAmountValue] = useState("");
+
+  // {formattedNumbers} = useNumberFormatter([amount, convertedAmount])//use the hook
 
   const isEuropeanCurrency = (currency) => {
     const europeanCurrencies = [

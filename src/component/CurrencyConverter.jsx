@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useCurrencyInfo from "../hooks/useCurrencyInfo.js";
+import useNumberFormatter from "../hooks/useNumberformatter.js";
 import InputBox from "./inputBox.jsx";
 
 function CurrencyConverter() {
@@ -11,29 +12,24 @@ function CurrencyConverter() {
   const { data: currencyInfo, error } = useCurrencyInfo(from); //calling the custom hook
   const options = Object.keys(currencyInfo);
 
+//use hook number formatter
+const {formattedNumbers} = useNumberFormatter([convertedAmount])//use the hook
+
   const swap = () => {
     //swap from and to
     const newFrom = to;
     const newTo = from;
-
-    //calculate the new converted amount based on the updated from and to
     const newConvertedAmount = amount * currencyInfo[to];
-
     //uodate from, to and the converted amount
     setFrom(newFrom);
     setTo(newTo);
     setConvertedAmount(newConvertedAmount);
-
     //update the amount to the new converted amount
     setAmount(newConvertedAmount);
   };
 
   const convert = () => {
     setConvertedAmount(amount * currencyInfo[to]);
-  };
-
-  const formatValue = (value) => {
-    return numeral(value).format("0,0.00");
   };
 
   return (
@@ -54,7 +50,6 @@ function CurrencyConverter() {
                 onCurrencyChange={(currency) => setFrom(currency)}
                 onAmountChange={(amount) => setAmount(amount)}
                 selectedCurrency={from}
-                formatValue={formatValue}
               />
             </div>
             <div className="relative w-full h-0.5">
@@ -69,7 +64,7 @@ function CurrencyConverter() {
               <InputBox
                 label="To"
                 currencyOptions={options}
-                amount={convertedAmount}
+                amount={formattedNumbers}
                 onCurrencyChange={(currency) => setTo(currency)}
                 selectedCurrency={to}
                 amountDisabled
