@@ -59,7 +59,7 @@ function CurrencyConverter() {
             </div>
             <div className="relative w-full h-0.5">
               <button
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#194266] text-white  text-xs px-2 py-0.5"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black text-white  text-xs px-2 py-0.5"
                 onClick={swap}
                 style={{
                   transition: "transform 0.2s ease",
@@ -96,7 +96,7 @@ function CurrencyConverter() {
             </div>
             <button
               type="submit"
-              className="w-40 text-white text-xs bg-[#194266] rounded-full mx-auto flex justify-center"
+              className="w-40 text-white text-xs bg-black rounded-full mx-auto flex justify-center"
               style={{
                 transition: "transform 0.2s ease",
               }}
