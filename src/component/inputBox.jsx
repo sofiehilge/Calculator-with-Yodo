@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React, { useId, useState } from "react";
 import styled from "styled-components";
 
@@ -76,7 +78,7 @@ function InputBox({
   className = "",
 }) {
   const id = useId();
-  const [amountValue, setAmountValue] = useState("");
+  const [setAmountValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
