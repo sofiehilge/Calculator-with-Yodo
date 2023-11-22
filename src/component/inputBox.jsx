@@ -1,4 +1,5 @@
 import React, { useId, useState } from "react";
+
 import useNumberFormatter from "../hooks/useNumberformatter.js";
 
 function InputBox({
@@ -14,6 +15,16 @@ function InputBox({
 }) {
   const id = useId();
   const [amountValue, setAmountValue] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const toggling = () => setIsOpen(!isOpen);
+
+  const onOptionClicked = (value) => () => {
+    setSelectedOption(value);
+    setIsOpen(false);
+    console.log(selectedOption);
+  };
 
   const isEuropeanCurrency = (currency) => {
     const europeanCurrencies = [
@@ -98,25 +109,38 @@ function InputBox({
       </div>
       <div className="w-1/2 flex flex-wrap justify-end text-right">
         <p className="text-black/40 mb-2 w-full">Currency Type</p>
-        <select
-          className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
-          value={selectedCurrency}
-          onChange={(e) => {
-            onCurrencyChange && onCurrencyChange(e.target.value);
-          }}
-          disabled={currencyDisabled}
-        >
-          {currencyOptions
-            .filter(
-              (currency) =>
-                isEuropeanCurrency(currency) || isCryptoCurrency(currency)
-            )
-            .map((currency) => (
-              <option key={currency} value={currency}>
-                {currency}
-              </option>
-            ))}
-        </select>
+
+        {/* old selector */}
+        <DropDownContainer>
+          <DropDownHeader onClick={toggling}>{selectedCurrency}</DropDownHeader>
+          {isOpen && (
+            <DropDownListContainer>
+              <DropDownList
+                className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
+                value={selectedCurrency}
+                onChange={(e) => {
+                  onCurrencyChange && onCurrencyChange(e.target.value);
+                }}
+                disabled={currencyDisabled}
+              >
+                {currencyOptions
+                  .filter(
+                    (currency) =>
+                      isEuropeanCurrency(currency) || isCryptoCurrency(currency)
+                  )
+                  .map((currency) => (
+                    <ListItem
+                      onClick={onOptionClicked(currency)}
+                      key={currency}
+                      value={currency}
+                    >
+                      {currency}
+                    </ListItem>
+                  ))}
+              </DropDownList>
+            </DropDownListContainer>
+          )}
+        </DropDownContainer>
       </div>
     </div>
   );

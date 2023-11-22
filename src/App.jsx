@@ -6,6 +6,7 @@ import OutputComp from "./component/OutputComp";
 import StyledSlider from "./component/StyledSlider";
 import "./index.css"; // Importerer CSS-stilen
 import CurrencyConverter from "./component/CurrencyConverter";
+import StyledSelector from "./component/StyledSelector";
 
 function App() {
   const [updatedInputValue, setUpdatedInputValue] = useState(0);
@@ -28,7 +29,7 @@ function App() {
   return (
     <>
       <div className="container">
-        <div className="header lg:w-[565px] p-4">
+        <div className="header lg:w-[565px] p-4 ">
           <CurrencyConverter />
         </div>
 
@@ -54,6 +55,7 @@ function App() {
           </div>
         </div>
       </div>
+   {/*    <StyledSelector/> */}
     </>
   );
 }

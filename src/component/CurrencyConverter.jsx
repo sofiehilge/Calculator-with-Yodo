@@ -33,9 +33,9 @@ const {formattedNumbers} = useNumberFormatter([convertedAmount])//use the hook
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-center w-full bg-no-repeat bg-cover h-">
+    <div className="flex flex-wrap items-center justify-center w-[358.4px] h-[300px] bg-no-repeat bg-cover h-">
       <div className="w-full">
-        <div className="w-full max-w-md p-5 mx-auto border border-black rounded-lg backdrop-blur-sm">
+        <div className="w-full max-w-md p-5 mx-auto border-2 border-[#3183CC] rounded backdrop-blur-sm">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -54,8 +54,27 @@ const {formattedNumbers} = useNumberFormatter([convertedAmount])//use the hook
             </div>
             <div className="relative w-full h-0.5">
               <button
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-black text-white px-2 py-0.5"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black text-white  text-xs px-2 py-0.5"
                 onClick={swap}
+                style={{
+                  transition: "transform 0.2s ease",
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.transform =
+                    "translate(-50%, -50%) scale(1.1)")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.transform =
+                    "translate(-50%, -50%) scale(1)")
+                }
+                onFocus={(e) =>
+                  (e.currentTarget.style.transform =
+                    "translate(-50%, -50%) scale(1.1)")
+                }
+                onBlur={(e) =>
+                  (e.currentTarget.style.transform =
+                    "translate(-50%, -50%) scale(1)")
+                }
               >
                 Swap
               </button>
@@ -72,7 +91,16 @@ const {formattedNumbers} = useNumberFormatter([convertedAmount])//use the hook
             </div>
             <button
               type="submit"
-              className="w-full text-white bg-black rounded-lg"
+              className="w-40 text-white text-xs bg-black rounded-full mx-auto flex justify-center"
+              style={{
+                transition: "transform 0.2s ease",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.transform = "scale(1.1)")
+              }
+              onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              onFocus={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+              onBlur={(e) => (e.currentTarget.style.transform = "scale(1)")}
             >
               Convert {from.toUpperCase()} to {to.toUpperCase()}
             </button>
