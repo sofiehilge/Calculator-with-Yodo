@@ -1,6 +1,72 @@
 import React, { useId, useState } from "react";
+import styled from "styled-components";
 
 import useNumberFormatter from "../hooks/useNumberformatter.js";
+
+const DropDownContainer = styled("div")`
+  width: 1rem;
+  margin: 0 auto;
+`;
+const DropDownHeader = styled("div")`
+  padding: 0.1em 1.5em 0.1em 1.5em;
+  /* border: 2px solid red; */
+  border-radius: 9999px;
+  font-weight: 500;
+  color: white;
+  background: black;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+`;
+
+const DropDownListContainer = styled("div")`
+  background-color: black;
+`;
+
+const DropDownList = styled("ul")`
+  position: absolute;
+  margin: 0;
+  width: auto;
+  padding-right: 4px;
+  /* border: 2px solid red; */
+  border-radius: 9999px;
+  font-weight: 500;
+  color: white;
+  box-sizing: border-box;
+  font-size: 12px;
+  z-index: 2;
+  box-sizing: border-box;
+  max-height: 100px; /* Set a maximum height for the dropdown */
+  overflow-y: auto; /* Add a scrollbar for overflow content */
+  &::-webkit-scrollbar {
+    width: 4px;
+   
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #121316; /* color of the thumb */
+    border-radius: 4px;
+  
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color:#606778; /* color of the track */
+    border-radius: 4px;
+    height: 90px;
+  }
+
+  &:first-child {
+    padding-top: 0.8em;
+    background-color: black;
+  }
+`;
+const ListItem = styled("li")`
+  list-style: none;
+  margin-bottom: 0.8em;
+`;
 
 function InputBox({
   label,
