@@ -64,7 +64,7 @@ const {formattedNumbers} = useNumberFormatter([convertedAmount])//use the hook
               <InputBox
                 label="To"
                 currencyOptions={options}
-                amount={formattedNumbers}
+                amount={formattedNumbers[0]}
                 onCurrencyChange={(currency) => setTo(currency)}
                 selectedCurrency={to}
                 amountDisabled

@@ -15,8 +15,6 @@ function InputBox({
   const id = useId();
   const [amountValue, setAmountValue] = useState("");
 
-  // {formattedNumbers} = useNumberFormatter([amount, convertedAmount])//use the hook
-
   const isEuropeanCurrency = (currency) => {
     const europeanCurrencies = [
       "eur", // Euro
@@ -53,25 +51,17 @@ function InputBox({
     return cryptoCurrencies.includes(currency.toLowerCase());
   };
 
-  const handleKeyDown = (e) => {
-    //Allow only numeric and specific control keys
-    const isAllowedKey =
-      e.key === "," || // Allow comma
-      e.key === "." || // Allow dot
-      (e.key >= "0" && e.key <= "9") ||
-      e.key === "Backspace" ||
-      e.key === "Delete" ||
-      e.key === "ArrowLeft" ||
-      e.key === "ArrowRight" ||
-      e.key === "Home" ||
-      e.key === "End";
-    if (!isAllowedKey) {
-      e.preventDefault();
-    }
-  };
-
   const handleInputClick = () => {
     setAmountValue("");
+  };
+
+  const formatAmount = (e) => {
+    const inputValue = e.target.value
+    const numericValue = inputValue
+      .replace(/[^\d,]/g, "")
+      .replace(/(,)(?=\1)|[^0-9,]/g, "");
+    const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return formattedValue;
   };
 
   return (
@@ -88,19 +78,19 @@ function InputBox({
           disabled={amountDisabled}
           value={amount}
           onChange={(e) => {
-            // Allow only numbers, commas, and dots
-            const numericValue = e.target.value.replace(/[^0-9,.]/g, "");
-
+            const formattedValue = formatAmount(e);
+            e.target.value = formattedValue//update the displayed value
+          
             // Attempt to convert the numeric value to a number
-            const parsedValue = Number(numericValue);
+            const parsedValue = Number(formattedValue.replace(/,/g, ""));
 
             // Check if the conversion is successful
             if (!isNaN(parsedValue)) {
               // Update the state with the parsed numeric value
               onAmountChange && onAmountChange(parsedValue);
             } else {
-              // If the conversion fails, set an empty string or the original value
-              setAmountValue(e.target.value);
+           // If the conversion fails, set an empty string or the original value
+           onAmountChange && onAmountChange(""); // Reset to empty string
             }
           }}
           onClick={handleInputClick} // Handle click event to reset the value
