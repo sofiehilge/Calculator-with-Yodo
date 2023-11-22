@@ -31,17 +31,17 @@ function InputBox({
       "eur", // Euro
       "gbp", // British Pound
       "chf", // Swiss Franc
-      "sek", // Swedish Krona
-      "nok", // Norwegian Krone
+      // "sek", // Swedish Krona
+      // "nok", // Norwegian Krone
       "dkk", // Danish Krone
-      "pln", // Polish Złoty
-      "czk", // Czech Koruna
-      "huf", // Hungarian Forint
-      "ron", // Romanian Leu
-      "bgn", // Bulgarian Lev
-      "hrk", // Croatian Kuna
-      "try", // Turkish Lira
-      "isk", // Icelandic Króna
+      // "pln", // Polish Złoty
+      // "czk", // Czech Koruna
+      // "huf", // Hungarian Forint
+      // "ron", // Romanian Leu
+      // "bgn", // Bulgarian Lev
+      // "hrk", // Croatian Kuna
+      // "try", // Turkish Lira
+      // "isk", // Icelandic Króna
     ];
     return europeanCurrencies.includes(currency.toLowerCase());
   };
@@ -50,14 +50,14 @@ function InputBox({
     const cryptoCurrencies = [
       "btc", // Bitcoin
       "eth", // Ethereum
-      "ltc", // Litecoin
-      "xrp", // Ripple
-      "bch", // Bitcoin Cash
-      "ada", // Cardano
-      "xlm", // Stellar
-      "dot", // Polkadot
-      "link", // Chainlink
-      "bnb", // Binance Coin
+      // "ltc", // Litecoin
+      // "xrp", // Ripple
+      // "bch", // Bitcoin Cash
+      // "ada", // Cardano
+      // "xlm", // Stellar
+      // "dot", // Polkadot
+      // "link", // Chainlink
+      // "bnb", // Binance Coin
     ];
     return cryptoCurrencies.includes(currency.toLowerCase());
   };
@@ -109,8 +109,6 @@ function InputBox({
       </div>
       <div className="w-1/2 flex flex-wrap justify-end text-right">
         <p className="text-black/40 mb-2 w-full">Currency Type</p>
-
-        {/* old selector */}
         <DropDownContainer>
           <DropDownHeader onClick={toggling}>{selectedCurrency}</DropDownHeader>
           {isOpen && (
