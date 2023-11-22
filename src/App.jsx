@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Echart from "./component/Echart";
 import CalcButtons from "./component/CalcButtons";
 import OutputComp from "./component/OutputComp";
-import RangeSlider from "./component/RangeSlider";
 import StyledSlider from "./component/StyledSlider";
 import "./index.css"; // Importerer CSS-stilen
 import CurrencyConverter from "./component/CurrencyConverter";
