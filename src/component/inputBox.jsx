@@ -2,32 +2,63 @@ import React, { useId, useState } from "react";
 import styled from "styled-components";
 
 const DropDownContainer = styled("div")`
-  width: 10.5em;
+  width: 1rem;
   margin: 0 auto;
 `;
 const DropDownHeader = styled("div")`
-  margin-bottom: 0.8em;
-  padding: 0.4em 2em 0.4em 1em;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  padding: 0.1em 1.5em 0.1em 1.5em;
+  /* border: 2px solid red; */
+  border-radius: 9999px;
   font-weight: 500;
-  font-size: 1.3rem;
-  color: #3faffa;
-  background: #ffffff;
+  color: white;
+  background: black;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
 `;
-const DropDownListContainer = styled("div")``;
+
+const DropDownListContainer = styled("div")`
+  background-color: black;
+`;
+
 const DropDownList = styled("ul")`
   position: absolute;
-  padding: 0;
   margin: 0;
-  padding-left: 1em;
-  background: #ffffff;
-  border: 2px solid #e5e5e5;
-  box-sizing: border-box;
-  color: #3faffa;
-  font-size: 1.3rem;
+  width: auto;
+  padding-right: 4px;
+  /* border: 2px solid red; */
+  border-radius: 9999px;
   font-weight: 500;
+  color: white;
+  box-sizing: border-box;
+  font-size: 12px;
+  z-index: 2;
+  box-sizing: border-box;
+  max-height: 100px; /* Set a maximum height for the dropdown */
+  overflow-y: auto; /* Add a scrollbar for overflow content */
+  &::-webkit-scrollbar {
+    width: 4px;
+   
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #121316; /* color of the thumb */
+    border-radius: 4px;
+  
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color:#606778; /* color of the track */
+    border-radius: 4px;
+    height: 90px;
+  }
+
   &:first-child {
     padding-top: 0.8em;
+    background-color: black;
   }
 `;
 const ListItem = styled("li")`
@@ -64,17 +95,17 @@ function InputBox({
       "eur", // Euro
       "gbp", // British Pound
       "chf", // Swiss Franc
-      "sek", // Swedish Krona
-      "nok", // Norwegian Krone
+      // "sek", // Swedish Krona
+      // "nok", // Norwegian Krone
       "dkk", // Danish Krone
-      "pln", // Polish Złoty
-      "czk", // Czech Koruna
-      "huf", // Hungarian Forint
-      "ron", // Romanian Leu
-      "bgn", // Bulgarian Lev
-      "hrk", // Croatian Kuna
-      "try", // Turkish Lira
-      "isk", // Icelandic Króna
+      // "pln", // Polish Złoty
+      // "czk", // Czech Koruna
+      // "huf", // Hungarian Forint
+      // "ron", // Romanian Leu
+      // "bgn", // Bulgarian Lev
+      // "hrk", // Croatian Kuna
+      // "try", // Turkish Lira
+      // "isk", // Icelandic Króna
     ];
     return europeanCurrencies.includes(currency.toLowerCase());
   };
@@ -83,14 +114,14 @@ function InputBox({
     const cryptoCurrencies = [
       "btc", // Bitcoin
       "eth", // Ethereum
-      "ltc", // Litecoin
-      "xrp", // Ripple
-      "bch", // Bitcoin Cash
-      "ada", // Cardano
-      "xlm", // Stellar
-      "dot", // Polkadot
-      "link", // Chainlink
-      "bnb", // Binance Coin
+      // "ltc", // Litecoin
+      // "xrp", // Ripple
+      // "bch", // Bitcoin Cash
+      // "ada", // Cardano
+      // "xlm", // Stellar
+      // "dot", // Polkadot
+      // "link", // Chainlink
+      // "bnb", // Binance Coin
     ];
     return cryptoCurrencies.includes(currency.toLowerCase());
   };
@@ -150,8 +181,6 @@ function InputBox({
       </div>
       <div className="w-1/2 flex flex-wrap justify-end text-right">
         <p className="text-black/40 mb-2 w-full">Currency Type</p>
-
-        {/* old selector */}
         <DropDownContainer>
           <DropDownHeader onClick={toggling}>{selectedCurrency}</DropDownHeader>
           {isOpen && (
