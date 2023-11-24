@@ -1,7 +1,7 @@
 import React from "react";
 import ReactSlider from "react-slider";
 import styled from "styled-components";
-import numeral from "numeral";
+import useNumberFormatter from "../hooks/useNumberformatter";
 
 const CustomSlider = styled(ReactSlider)`
   width: 100%;
@@ -56,9 +56,11 @@ const StyledTrack = styled.div`
 const Track = (props, state) => <StyledTrack {...props} index={state.index} />;
 
 const StyledSlider = ({ value, onChangeAmount }) => {
+  const { formattedNumbers } = useNumberFormatter([value]);
   const handleAmountChange = (newValue) => {
     onChangeAmount(newValue);
   };
+
   return (
     <div>
       <CustomSlider
@@ -71,7 +73,9 @@ const StyledSlider = ({ value, onChangeAmount }) => {
         onAfterChange={(value, index) =>
           console.log(`onAfterChange: ${JSON.stringify({ value, index })}`)
         }
-        renderThumb={Thumb}
+        renderThumb={(props, index) => (
+          <StyledThumb {...props}>{formattedNumbers[0]}</StyledThumb>
+        )}
         renderTrack={Track}
         min={1000}
         max={100000}
