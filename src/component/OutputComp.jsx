@@ -15,17 +15,17 @@ const OutputComp = ({ updatedInputValue, selectedPlan }) => {
     <div className="mb-4 text-center">
       {selectedPlan === 2.5 && (
         <div className="flex justify-between m-4">
-          <p>In 1 year {formattedNumbers[0]} €</p>
-          <p>In 3 years {formattedNumbers[1]} €</p>
-          <p>In 6 years {formattedNumbers[2]} €</p>
+          <p>In 1 year <span className="flex justify-center">{formattedNumbers[0]} €</span></p>
+          <p>In 3 years <span className="flex justify-center">{formattedNumbers[1]} €</span></p>
+          <p>In 6 years <span className="flex justify-center">{formattedNumbers[2]} €</span></p>
         </div>
       )}
 
       {selectedPlan === 5 && (
         <div className="flex justify-between m-4">
-          <p>In 1 year {formattedNumbers[3]} €</p>
-          <p>In 3 years {formattedNumbers[4]} €</p>
-          <p>In 6 years {formattedNumbers[5]} €</p>
+          <p>In 1 year <span className="flex justify-center">{formattedNumbers[3]} €</span></p>
+          <p>In 3 years <span className="flex justify-center">{formattedNumbers[4]} €</span></p>
+          <p>In 6 years <span className="flex justify-center">{formattedNumbers[5]} €</span></p>
         </div>
       )}
     </div>
