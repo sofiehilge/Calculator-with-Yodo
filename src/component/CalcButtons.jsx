@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const CalcButtons = ({ handleInputValue, handlePlanChange, totalValue }) => {
   const options = [
     { label: "Good Plan (5%)", value: 5 },
-    { label: "Free Plan (2.5%)", value: 2.5 },
+    { label: "Free Plan (2,5%)", value: 2.5 },
   ];
 
   const [obtainedValue, setObtainedValue] = useState(2.5);

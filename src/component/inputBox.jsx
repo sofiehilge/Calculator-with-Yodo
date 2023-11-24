@@ -10,10 +10,11 @@ const DropDownContainer = styled("div")`
 const DropDownHeader = styled("div")`
   padding: 0.1em 1.5em 0.1em 1.5em;
   /* border: 2px solid red; */
-  border-radius: 9999px;
+  /*   border-top-left-radius: 4px; */
+  border-radius: 4px;
   font-weight: 500;
-  color: white;
-  background: black;
+  color: #abb8c3;
+  background: #f6f6f6;
   font-size: 12px;
   display: flex;
   justify-content: center;
@@ -32,38 +33,41 @@ const DropDownList = styled("ul")`
   width: auto;
   padding-right: 4px;
   /* border: 2px solid red; */
-  border-radius: 9999px;
+  border-radius: 4px;
   font-weight: 500;
-  color: white;
+  color: #abb8c3;
+  background: #f6f6f6;
   box-sizing: border-box;
   font-size: 12px;
   z-index: 2;
   box-sizing: border-box;
   max-height: 100px; /* Set a maximum height for the dropdown */
   overflow-y: auto; /* Add a scrollbar for overflow content */
+  
   &::-webkit-scrollbar {
     width: 4px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #121316; /* color of the thumb */
+    background-color: #abb8c3; /* color of the thumb */
     border-radius: 4px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #606778; /* color of the track */
+    background-color: #f6f6f6; /* color of the track */
     border-radius: 4px;
     height: 90px;
   }
 
   &:first-child {
     padding-top: 0.8em;
-    background-color: black;
+    background-color: #f6f6f6;
   }
 `;
 const ListItem = styled("li")`
   list-style: none;
   margin-bottom: 0.8em;
+  cursor: pointer;
 `;
 
 function InputBox({
@@ -87,6 +91,7 @@ function InputBox({
   const onOptionClicked = (value) => () => {
     setSelectedOption(value);
     setIsOpen(false);
+    onCurrencyChange && onCurrencyChange(value); // Update the selected currency here
     console.log(selectedOption);
   };
 
@@ -179,10 +184,10 @@ function InputBox({
             <DropDownListContainer>
               <DropDownList
                 className="px-1 py-1 bg-gray-100 rounded-lg outline-none cursor-pointer"
-                value={selectedCurrency}
+                /* value={selectedCurrency}
                 onChange={(e) => {
                   onCurrencyChange && onCurrencyChange(e.target.value);
-                }}
+                }} */
                 disabled={currencyDisabled}
               >
                 {currencyOptions
@@ -192,9 +197,9 @@ function InputBox({
                   )
                   .map((currency) => (
                     <ListItem
-                      onClick={onOptionClicked(currency)}
-                      key={currency}
-                      value={currency}
+                    key={currency}
+                    onClick={onOptionClicked(currency)}
+                /*       value={currency} */
                     >
                       {currency}
                     </ListItem>
