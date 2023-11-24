@@ -109,7 +109,7 @@ const Echart = ({ updatedInputValue }) => {
     },
     series: [
       {
-        name: "Free Plan 2.5%",
+        name: "Free Plan 2,5%",
         type: "line",
         stack: "Total",
         smooth: true,
