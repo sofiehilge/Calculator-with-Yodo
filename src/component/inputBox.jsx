@@ -21,6 +21,7 @@ const DropDownHeader = styled("div")`
   margin-top: auto;
   margin-bottom: auto;
   text-align: center;
+  cursor: pointer;
 `;
 
 const DropDownListContainer = styled("div")`
@@ -68,6 +69,14 @@ const ListItem = styled("li")`
   list-style: none;
   margin-bottom: 0.8em;
   cursor: pointer;
+  &:hover {
+      background-color: #e0e0e0; /* Lighter grey for hover */
+    }
+
+    &.selected {
+      background-color: #d3d3d3; /* Different grey for selected */
+    }
+
 `;
 
 function InputBox({
